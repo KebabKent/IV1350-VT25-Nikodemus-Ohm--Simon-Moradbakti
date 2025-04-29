@@ -21,6 +21,8 @@ public class Main {
 		RecieptPrinter printer = new RecieptPrinter();
 		Controller controller = new Controller(creator, printer);
 		View view = new View(controller);
+
+		view.sampleExecution();
 	}
 
 }

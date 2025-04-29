@@ -5,6 +5,7 @@ import se.kth.iv1350.retailStore.integration.RecieptPrinter;
 
 import se.kth.iv1350.retailStore.model.CashRegister;
 import se.kth.iv1350.retailStore.model.Sale;
+import se.kth.iv1350.retailStore.model.Payment;
 
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
@@ -29,17 +30,16 @@ public class Controller {
 	}
 
 	public ItemDTO registerItem(ItemDTO searchedItem) {
-		boolean itemExists = sale.itemExists(searchedItem);
+		ItemDTO foundItem = sale.registerItem(searchedItem, creator);
+		return foundItem;
+	}
 
-		if (!itemExists) {
-			ItemDTO foundItem = creator.retrieveItemInfo(searchedItem);
+	public Payment fetchDiscount(String customerId) {
+		float discount = creator.fetchDiscount(customerId);
 
-			sale.registerItem(foundItem);
+		Payment totalCost = sale.calculateDiscountedPrice(discount);
 
-			return foundItem;
-		}
-
-		return null;
+		return totalCost;
 	}
 
 	public AmountDTO endSale() {
@@ -47,10 +47,6 @@ public class Controller {
 	}
 
 	public AmountDTO payForSale(AmountDTO amount) {
-		return null;
-	}
-
-	public AmountDTO fetchDiscount(String customerId) {
 		return null;
 	}
 

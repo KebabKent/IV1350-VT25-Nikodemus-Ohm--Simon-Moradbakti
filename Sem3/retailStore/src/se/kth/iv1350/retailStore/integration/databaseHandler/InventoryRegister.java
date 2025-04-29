@@ -1,5 +1,7 @@
 package se.kth.iv1350.retailStore.integration.databaseHandler;
 
+import se.kth.iv1350.retailStore.util.CompareItemDTO;
+
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
@@ -22,7 +24,7 @@ public class InventoryRegister {
 				5.0f,
 				0.12f,
 				"Fresh red apple",
-				10);
+				1000);
 
 		ItemDTO milk = new ItemDTO(
 				"002",
@@ -30,7 +32,7 @@ public class InventoryRegister {
 				15.0f,
 				0.12f,
 				"1-liter organic milk",
-				20);
+				2000);
 
 		ItemDTO bread = new ItemDTO(
 				"003",
@@ -38,7 +40,7 @@ public class InventoryRegister {
 				25.0f,
 				0.12f,
 				"Whole grain bread loaf",
-				5);
+				5000);
 
 		databaseItems.add(apple);
 		databaseItems.add(milk);
@@ -48,16 +50,7 @@ public class InventoryRegister {
 	}
 
 	ItemDTO retrieveItemInfo(ItemDTO searchedItem) {
-		for (ItemDTO databaseItem : this.fetchedItems) {
-			if (compareItem(databaseItem, searchedItem)) {
-				return databaseItem;
-			}
-		}
-		return null;
-	}
-
-	private boolean compareItem(ItemDTO registeredItem, ItemDTO searchedItem) {
-		return registeredItem.getItemId().equals(searchedItem.getItemId());
+		return CompareItemDTO.searchItemDTOInstance(searchedItem, this.fetchedItems);
 	}
 
 	void updateRegister(SaleDTO sale) {

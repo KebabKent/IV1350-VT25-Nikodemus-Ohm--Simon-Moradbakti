@@ -22,12 +22,31 @@ public class ItemDTO {
 		this.itemPrice = itemPrice;
 		this.itemVAT = itemVAT;
 		this.itemDescription = itemDescription;
-
 		this.quantity = quantity;
 	}
 
 	public String getItemId() {
 		return itemId;
+	}
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public Float getItemPrice() {
+		return itemPrice;
+	}
+
+	public Float getItemVAT() {
+		return itemVAT;
+	}
+
+	public String getItemDescription() {
+		return itemDescription;
+	}
+
+	public int getItemQuantity() {
+		return quantity;
 	}
 
 }
