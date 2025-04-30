@@ -2,13 +2,13 @@ package se.kth.iv1350.retailStore.dto;
 
 public class ItemDTO {
 
-	private String itemId;
-	private String itemName;
-	private Float itemPrice;
-	private Float itemVAT;
-	private String itemDescription;
+	private final String itemId;
+	private final String itemName;
+	private final Float itemPrice;
+	private final Float itemVAT;
+	private final String itemDescription;
 
-	private int quantity; // ta bort?
+	private final int quantity; // ta bort?
 
 	public ItemDTO(
 			String itemId,
@@ -22,6 +22,17 @@ public class ItemDTO {
 		this.itemPrice = itemPrice;
 		this.itemVAT = itemVAT;
 		this.itemDescription = itemDescription;
+		this.quantity = quantity;
+	}
+
+	public ItemDTO(
+			ItemDTO itemToCopy,
+			int quantity) {
+		this.itemId = itemToCopy.getItemId();
+		this.itemName = itemToCopy.getItemName();
+		this.itemPrice = itemToCopy.getItemPrice();
+		this.itemVAT = itemToCopy.getItemVAT();
+		this.itemDescription = itemToCopy.getItemDescription();
 		this.quantity = quantity;
 	}
 

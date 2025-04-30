@@ -54,6 +54,23 @@ public class InventoryRegister {
 	}
 
 	void updateRegister(SaleDTO sale) {
+		for (ItemDTO item : sale.getItemList()) {
+			for (ItemDTO fetchedItem : this.fetchedItems) {
+				if (item.getItemId().equals(fetchedItem.getItemId())) {
+					fetchedItem = new ItemDTO(fetchedItem, fetchedItem.getItemQuantity() - item.getItemQuantity());
+				}
+			}
+
+		}
+
+		System.out.println("*************Inventory register*************");
+		int i = 0;
+		for (ItemDTO item : this.fetchedItems) {
+			System.out.println("    Item: " + i++ + "\n" +
+					"       ID: " + item.getItemId() + "\n" +
+					"       Name: " + item.getItemName() + "\n" +
+					"       Quantity: " + item.getItemQuantity() + "\n");
+		}
 
 	}
 

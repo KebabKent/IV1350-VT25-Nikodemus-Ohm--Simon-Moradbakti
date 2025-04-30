@@ -13,4 +13,12 @@ public class Period {
     public void setEndTime() {
         this.saleEndTime = java.time.LocalTime.now();
     }
+
+    public java.time.LocalTime getSaleTime() {
+        return saleTime;
+    }
+
+    public java.time.LocalTime getSaleEndTime() {
+        return saleEndTime;
+    }
 }

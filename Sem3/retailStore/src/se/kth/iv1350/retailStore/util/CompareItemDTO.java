@@ -31,14 +31,4 @@ public class CompareItemDTO {
     private static boolean compareItemId(ItemDTO registeredItem, ItemDTO searchedItem) {
         return registeredItem.getItemId().equals(searchedItem.getItemId());
     }
-
-    public static ItemDTO copyItemDTOInfo(ItemDTO itemToCopy, int quantity) {
-        return new ItemDTO(
-                itemToCopy.getItemId(),
-                itemToCopy.getItemName(),
-                itemToCopy.getItemPrice(),
-                itemToCopy.getItemVAT(),
-                itemToCopy.getItemDescription(),
-                quantity);
-    }
 }

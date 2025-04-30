@@ -2,7 +2,6 @@ package se.kth.iv1350.retailStore.startup;
 
 import se.kth.iv1350.retailStore.view.View;
 import se.kth.iv1350.retailStore.controller.Controller;
-import se.kth.iv1350.retailStore.integration.RecieptPrinter;
 import se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler;
 
 /**
@@ -18,8 +17,7 @@ public class Main {
 		System.out.println("Welcome to the Retail Store!");
 
 		RegistryHandler creator = new RegistryHandler();
-		RecieptPrinter printer = new RecieptPrinter();
-		Controller controller = new Controller(creator, printer);
+		Controller controller = new Controller(creator);
 		View view = new View(controller);
 
 		view.sampleExecution();

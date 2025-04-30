@@ -8,20 +8,17 @@ import se.kth.iv1350.retailStore.model.Sale;
 import se.kth.iv1350.retailStore.model.Payment;
 
 import se.kth.iv1350.retailStore.dto.ItemDTO;
+import se.kth.iv1350.retailStore.dto.SaleDTO;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 
 public class Controller {
 	public RegistryHandler creator;
-	public RecieptPrinter printer;
-
 	public CashRegister cashRegister;
 
 	public Sale sale;
 
-	public Controller(RegistryHandler creator, RecieptPrinter printer) {
+	public Controller(RegistryHandler creator) {
 		this.creator = creator;
-		this.printer = printer;
-
 		this.cashRegister = new CashRegister();
 	}
 
@@ -34,20 +31,26 @@ public class Controller {
 		return foundItem;
 	}
 
-	public Payment fetchDiscount(String customerId) {
+	public SaleDTO fetchDiscount(String customerId) {
 		float discount = creator.fetchDiscount(customerId);
 
-		Payment totalCost = sale.calculateDiscountedPrice(discount);
+		SaleDTO saleInfo = sale.calculateDiscountedPrice(discount);
 
-		return totalCost;
+		return saleInfo;
 	}
 
-	public AmountDTO endSale() {
-		return null;
+	public SaleDTO endSale() {
+		return sale.endSale();
 	}
 
-	public AmountDTO payForSale(AmountDTO amount) {
-		return null;
+	public SaleDTO payForSale(AmountDTO amount) {
+		SaleDTO saleInfo = sale.payForSale(amount);
+
+		cashRegister.registerAmountPayed(saleInfo);
+		this.creator.updateRegisters(saleInfo);
+		RecieptPrinter.printReciept(saleInfo);
+
+		return saleInfo;
 	}
 
 }

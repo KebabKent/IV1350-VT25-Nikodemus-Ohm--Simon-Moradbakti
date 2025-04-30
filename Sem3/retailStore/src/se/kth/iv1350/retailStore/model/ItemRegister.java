@@ -23,9 +23,7 @@ public class ItemRegister {
 
         ItemDTO foundItem = this.itemList.get(foundItemPosition);
 
-        foundItem = CompareItemDTO.copyItemDTOInfo(
-                foundItem,
-                foundItem.getItemQuantity() + quantity);
+        foundItem = new ItemDTO(foundItem, foundItem.getItemQuantity() + quantity);
 
         this.itemList.set(foundItemPosition, foundItem);
         printItemList();
@@ -34,9 +32,7 @@ public class ItemRegister {
     }
 
     public void addItem(ItemDTO item, int quantity) {
-        item = CompareItemDTO.copyItemDTOInfo(
-                item,
-                quantity);
+        item = new ItemDTO(item, quantity);
 
         this.itemList.add(item);
         printItemList();
@@ -48,13 +44,18 @@ public class ItemRegister {
 
     public void printItemList() {
         System.out.println("Item list:");
+        printItemList(this.itemList);
+    }
+
+    public static void printItemList(List<ItemDTO> itemList) {
         int i = 0;
         for (ItemDTO item : itemList) {
             System.out.println("    Item: " + i++ + "\n" +
                     "       ID: " + item.getItemId() + "\n" +
                     "       Name: " + item.getItemName() + "\n" +
                     "       Quantity: " + item.getItemQuantity() + "\n" +
-                    "       Item price: " + item.getItemPrice() + "\n" +
+                    "       Price: " + item.getItemPrice() + "\n" +
+                    "       VAT: " + item.getItemVAT() + "\n" +
                     "       Price for quantity: " + (item.getItemPrice() * item.getItemQuantity()) + "\n");
         }
         System.out.println();

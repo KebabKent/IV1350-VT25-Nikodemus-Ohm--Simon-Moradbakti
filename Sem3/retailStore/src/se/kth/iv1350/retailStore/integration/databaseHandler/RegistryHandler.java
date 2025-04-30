@@ -14,7 +14,8 @@ public class RegistryHandler {
 	}
 
 	public void updateRegisters(SaleDTO sale) {
-
+		accountingRegister.updateRegister(sale);
+		inventoryRegister.updateRegister(sale);
 	}
 
 	public ItemDTO retrieveItemInfo(ItemDTO searchedItem) {
