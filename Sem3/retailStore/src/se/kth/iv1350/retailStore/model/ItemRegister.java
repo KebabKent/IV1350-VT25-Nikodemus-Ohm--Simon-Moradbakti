@@ -11,14 +11,32 @@ public class ItemRegister {
 
     private List<ItemDTO> itemList;
 
+    /**
+     * Initializes a new item register with an empty list of items.
+     * This constructor creates an empty list of items that can later be populated.
+     */
     public ItemRegister() {
         this.itemList = new ArrayList<>();
     }
 
+    /**
+     * Searches for an item in the item list and returns its position in the list.
+     * 
+     * @param searchedItem The item to search for in the register.
+     * @return The position of the item in the list, or -1 if the item is not found.
+     */
     public Integer findItem(ItemDTO searchedItem) {
         return CompareItemDTO.searchItemDTOPosition(searchedItem, this.itemList);
     }
 
+    /**
+     * Updates the quantity of an item in the item list based on its position.
+     * A new item DTO is created with the updated quantity, and the item list is modified accordingly.
+     * 
+     * @param foundItemPosition The position of the item in the list to update.
+     * @param quantity The quantity to add to the item.
+     * @return The updated item DTO.
+     */
     public ItemDTO updateItemDTO(Integer foundItemPosition, int quantity) {
 
         ItemDTO foundItem = this.itemList.get(foundItemPosition);
@@ -31,6 +49,12 @@ public class ItemRegister {
         return foundItem;
     }
 
+    /**
+     * Adds a new item to the item list with the specified quantity.
+     * 
+     * @param item The item to add to the register.
+     * @param quantity The quantity of the item to add.
+     */
     public void addItem(ItemDTO item, int quantity) {
         item = new ItemDTO(item, quantity);
 
@@ -38,15 +62,30 @@ public class ItemRegister {
         printItemList();
     }
 
+    /**
+     * Returns the current list of items in the register.
+     * 
+     * @return The list of item DTOs in the register.
+     */
     public List<ItemDTO> getItemList() {
         return itemList;
     }
 
+    /**
+     * Prints the details of all items in the item list.
+     * This method prints the ID, name, quantity, price, VAT, and total price for each item in the list.
+     */
     public void printItemList() {
         System.out.println("Item list:");
         printItemList(this.itemList);
     }
 
+    /**
+     * Prints the details of all items in the provided item list.
+     * This method is static and can be used to print any list of item DTOs.
+     * 
+     * @param itemList The list of items to print.
+     */
     public static void printItemList(List<ItemDTO> itemList) {
         int i = 0;
         for (ItemDTO item : itemList) {
