@@ -8,7 +8,7 @@ public class CashRegister {
 	private AmountDTO balance;
 
 	/**
-	 * Initializes a new cash register with a starting balance of 100,000 units.
+	 * Initializes a new cash register with a starting balance of 100000 units.
 	 * The starting balance is set when the cash register is created.
 	 */
 	public CashRegister() {
@@ -16,9 +16,9 @@ public class CashRegister {
 	}
 
 	/**
-	 * Registers the amount paid by the customer and the change given back. 
+	 * Registers the amount paid by the customer and the change which is given back. 
 	 * The cash register's balance is updated based on the amount paid and the change.
-	 * This method prints details about the transaction, including the amount paid, the change, and the current balance.
+	 * This method prints details about the transaction, including the amount paid, the change and the current balance.
 	 *
 	 * @param saleInfo The sale data, containing the amount paid and change for the transaction.
          * "this.balance" Updates the cash register balance
