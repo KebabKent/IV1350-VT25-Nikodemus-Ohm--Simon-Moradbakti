@@ -8,7 +8,7 @@ public class ItemDTO {
     private final Float itemVAT;
     private final String itemDescription;
 
-    private final int quantity; // ta bort?
+    private final int quantity;
 
     /**
      * Creates a new object that describes an item with all its attributes.
