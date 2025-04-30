@@ -32,7 +32,7 @@ public class DiscountRegister {
 	 * If the customer ID matches "123", a discount is given.
 	 *
 	 * @param customerId The ID of the customer.
-	 * @return 10% if customer ID is "123", otherwise 0%.
+	 * @return 10% if customer ID is "123", in other cases it is 0%.
 	 */
 	static float fetchDiscount(String customerId) {
 		if (customerId.equals("123")) {
