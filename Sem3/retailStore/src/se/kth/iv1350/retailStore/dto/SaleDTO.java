@@ -25,13 +25,13 @@ public class SaleDTO {
 	private final AmountDTO change;
 
 	/**
-	 * Skapar ett SaleDTO-objekt som innehåller information om försäljningen.
-	 * Används t.ex. för kvitto eller loggning innan betalning har gjorts.
-	 * 
-	 * @param saleId       Unikt ID för försäljningen.
-	 * @param itemRegister Innehåller listan med sålda varor.
-	 * @param salePeriod   Tidpunkter för när försäljningen startade och avslutades.
-	 * @param payment      Innehåller betalningsinformation (delvis används här).
+	 * Creates a SaleDTO object that holds all relevant information about a sale.
+	 * This version is used before the payment has been completed.
+	 *
+	 * @param saleId       Unique ID for this sale.
+	 * @param itemRegister Contains the list of all sold items.
+	 * @param salePeriod   Includes the time when the sale started and ended.
+	 * @param payment      Contains calculated price and VAT information.
 	 */
 	public SaleDTO(String saleId, ItemRegister itemRegister, Period salePeriod, Payment payment) {
 		this.saleID = saleId;
@@ -52,11 +52,11 @@ public class SaleDTO {
 	}
 
 	/**
-	 * Skapar en ny version av SaleDTO efter att betalning har skett.
-	 * Lägger till info om betalt belopp och växel.
-	 * 
-	 * @param saleDTO Tidigare försäljningsinfo utan betalningsdata.
-	 * @param payment Objekt som innehåller betalningsdetaljer.
+	 * Creates a new SaleDTO that includes payment details like amount paid and change.
+	 * Used after the customer has completed the payment.
+	 *
+	 * @param saleDTO  The existing sale data without payment info.
+	 * @param payment  The payment that was made by the customer.
 	 */
 	public SaleDTO(SaleDTO saleDTO, Payment payment) {
 		this.saleID = saleDTO.getSaleId();
@@ -77,99 +77,99 @@ public class SaleDTO {
 	}
 
 	/**
-	 * Returnerar försäljningens ID.
-	 * 
-	 * @return ID som en sträng.
+	 * Gets the ID of this sale.
+	 *
+	 * @return The sale ID.
 	 */
 	public String getSaleId() {
 		return saleID;
 	}
 
 	/**
-	 * Returnerar listan med sålda varor.
-	 * 
-	 * @return En lista med ItemDTO-objekt.
+	 * Gets the list of items that were sold in this sale.
+	 *
+	 * @return A list of ItemDTO objects.
 	 */
 	public List<ItemDTO> getItemList() {
 		return itemList;
 	}
 
 	/**
-	 * Returnerar tiden då försäljningen började.
-	 * 
-	 * @return Starttid för försäljningen.
+	 * Gets the time when the sale started.
+	 *
+	 * @return The start time of the sale.
 	 */
 	public java.time.LocalTime getSaleTime() {
 		return saleTime;
 	}
 
 	/**
-	 * Returnerar tiden då försäljningen avslutades.
-	 * 
-	 * @return Sluttid för försäljningen.
+	 * Gets the time when the sale ended.
+	 *
+	 * @return The end time of the sale.
 	 */
 	public java.time.LocalTime getSaleEndTime() {
 		return saleEndTime;
 	}
 
 	/**
-	 * Returnerar totalpriset för försäljningen före rabatt.
-	 * 
-	 * @return Totalpriset som float.
+	 * Gets the total price before any discounts.
+	 *
+	 * @return The total price.
 	 */
 	public float returnTotalPrice() {
 		return totalPrice;
 	}
 
 	/**
-	 * Returnerar total moms i kronor för försäljningen.
-	 * 
-	 * @return Momsen som float.
+	 * Gets the total VAT (in currency, not percentage).
+	 *
+	 * @return Total VAT amount.
 	 */
 	public float returnTotalVAT() {
 		return totalVAT;
 	}
 
 	/**
-	 * Returnerar momssatsen i procent.
-	 * 
-	 * @return Momssats som float.
+	 * Gets the VAT percentage used in this sale.
+	 *
+	 * @return The VAT percentage.
 	 */
 	public float returnTotalVATPercentage() {
 		return totalVATPercentage;
 	}
 
 	/**
-	 * Returnerar priset efter eventuell rabatt har dragits av.
-	 * 
-	 * @return Pris efter rabatt.
+	 * Gets the final price after any discounts are applied.
+	 *
+	 * @return The discounted price.
 	 */
 	public float returnDiscountedPrice() {
 		return discountedPrice;
 	}
 
 	/**
-	 * Returnerar hur stor rabatt som har getts i procent.
-	 * 
-	 * @return Rabattsats som float.
+	 * Gets the discount percentage that was applied.
+	 *
+	 * @return The discount percentage.
 	 */
 	public float returnDiscountedPercentage() {
 		return discountPercentage;
 	}
 
 	/**
-	 * Returnerar summan som kunden betalade.
-	 * 
-	 * @return AmountDTO med betalt belopp.
+	 * Gets the amount that the customer paid.
+	 *
+	 * @return An AmountDTO with the amount paid.
 	 */
 	public AmountDTO getAmountPaid() {
 		return amountPaid;
 	}
 
 	/**
-	 * Returnerar hur mycket växel kunden fick tillbaka.
-	 * 
-	 * @return AmountDTO med växelbelopp.
+	 * Gets the amount of change returned to the customer.
+	 *
+	 * @return An AmountDTO with the change.
 	 */
 	public AmountDTO getChange() {
 		return change;
