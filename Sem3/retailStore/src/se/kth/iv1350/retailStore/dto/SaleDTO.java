@@ -26,7 +26,6 @@ public class SaleDTO {
 
 	/**
 	 * Creates a SaleDTO object that holds all relevant information about a sale.
-	 * This version is used before the payment has been completed.
 	 *
 	 * @param saleId       Unique ID for this sale.
 	 * @param itemRegister Contains the list of all sold items.
@@ -53,7 +52,6 @@ public class SaleDTO {
 
 	/**
 	 * Creates a new SaleDTO that includes payment details like amount paid and change.
-	 * Used after the customer has completed the payment.
 	 *
 	 * @param saleDTO  The existing sale data without payment info.
 	 * @param payment  The payment that was made by the customer.
