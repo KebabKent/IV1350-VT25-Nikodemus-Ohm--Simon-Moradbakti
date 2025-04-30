@@ -31,6 +31,14 @@ public class Sale {
 		this.salePeriod = new Period(); // set time of sale
 	}
 
+	/**
+	 * Registers an item for the sale. If the item exists, it updates the quantity.
+	 * If it does not exist, it adds the item to the register.
+	 * 
+	 * @param searchedItem The item to register.
+	 * @param creator The registry handler used to retrieve item info.
+	 * @return The registered item.
+	 */
 	public ItemDTO registerItem(ItemDTO searchedItem, RegistryHandler creator) {
 		Integer foundItemPosition = itemRegister.findItem(searchedItem);
 		if (foundItemPosition != null) {
@@ -42,15 +50,32 @@ public class Sale {
 		return foundItem;
 	}
 
+	/**
+	 * Applies a discount to the sale and returns updated sale information.
+	 * 
+	 * @param discount The discount percentage to apply.
+	 * @return The updated sale information.
+	 */
 	public SaleDTO calculateDiscountedPrice(float discount) {
 		this.payment.setDiscount(discount);
 		return getSaleDTO();
 	}
 
+	/**
+	 * Ends the sale and returns the final sale information.
+	 * 
+	 * @return The final sale information.
+	 */
 	public SaleDTO endSale() {
 		return getSaleDTO();
 	}
 
+	/**
+	 * Registers the amount paid for the sale and calculates the change.
+	 * 
+	 * @param amount The amount paid for the sale.
+	 * @return The updated sale information including the amount paid and change.
+	 */
 	public SaleDTO payForSale(AmountDTO amount) {
 		this.payment.registerAmountPaid(amount);
 		this.payment.calculateChange();
@@ -60,6 +85,11 @@ public class Sale {
 		return this.saleInfo;
 	}
 
+	/**
+	 * Calculates the total price, applies any discounts, and finalizes the sale information.
+	 * 
+	 * @return The updated sale information with the total price, discount, and final details.
+	 */
 	public SaleDTO getSaleDTO() {
 		this.payment.calculateTotalPrice(itemRegister.getItemList());
 		this.payment.calculateDiscountedPrice();
