@@ -17,8 +17,8 @@ public class Payment {
     private AmountDTO change;
 
     /**
-     * Constructor that initializes the total price as zero.
-     * The Payment class is used to calculate and store the total price, VAT, discounts, and change for a sale.
+     * Constructor that initializes the total price as 0.
+     * The Payment class is used to calculate and store the total price, VAT, discounts and change for a sale.
      */
     public Payment() {
         this.totalPrice = new AmountDTO(0);
