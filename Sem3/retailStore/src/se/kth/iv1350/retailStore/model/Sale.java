@@ -28,7 +28,7 @@ public class Sale {
 
 		this.itemRegister = new ItemRegister();
 		this.payment = new Payment();
-		this.salePeriod = new Period(); // set time of sale
+		this.salePeriod = new Period();
 	}
 
 	/**
