@@ -13,7 +13,7 @@ public class InventoryRegister {
 
 	/**
 	 * Creates a new inventory register and loads item data from the "database".
-	 * This is a simulation and just fetches a static list of items.
+	 * This is a simulation and just fetches a static list of the items.
 	 */
 	InventoryRegister() {
 		this.fetchedItems = fetchItemsFromDB();
