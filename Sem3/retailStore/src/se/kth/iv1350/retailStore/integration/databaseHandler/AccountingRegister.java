@@ -10,7 +10,7 @@ public class AccountingRegister {
 	private List<SaleDTO> salesHistory;
 
 	/**
-	 * Creates a new accounting register that keeps track of all completed sales.
+	 * Creates a new accounting register that keeps track of all done sales.
 	 * It stores them in a list which represents the accounting history.
 	 */
 	AccountingRegister() {
