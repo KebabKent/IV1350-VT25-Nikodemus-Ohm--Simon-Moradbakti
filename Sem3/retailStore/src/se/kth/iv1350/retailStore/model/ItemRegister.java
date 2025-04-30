@@ -13,7 +13,7 @@ public class ItemRegister {
 
     /**
      * Initializes a new item register with an empty list of items.
-     * This constructor creates an empty list of items that can later be populated.
+     * This constructor creates an empty list of items that can later be filled with objects.
      */
     public ItemRegister() {
         this.itemList = new ArrayList<>();
@@ -23,7 +23,7 @@ public class ItemRegister {
      * Searches for an item in the item list and returns its position in the list.
      * 
      * @param searchedItem The item to search for in the register.
-     * @return The position of the item in the list, or -1 if the item is not found.
+     * @return The position of the item in the list.
      */
     public Integer findItem(ItemDTO searchedItem) {
         return CompareItemDTO.searchItemDTOPosition(searchedItem, this.itemList);
@@ -31,11 +31,11 @@ public class ItemRegister {
 
     /**
      * Updates the quantity of an item in the item list based on its position.
-     * A new item DTO is created with the updated quantity, and the item list is modified accordingly.
+     * A new itemDTO is created with the updated quantity, and the item list is modified according to it.
      * 
      * @param foundItemPosition The position of the item in the list to update.
      * @param quantity The quantity to add to the item.
-     * @return The updated item DTO.
+     * @return The updated itemDTO.
      */
     public ItemDTO updateItemDTO(Integer foundItemPosition, int quantity) {
 
