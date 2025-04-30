@@ -15,7 +15,7 @@ public class Main {
 	 * The entry point of the program. Initializes the necessary components and
 	 * starts the sample execution.
 	 * 
-	 * @param args Command line arguments (not used).
+	 * @param args Command line arguments.
 	 */
 	public static void main(String[] args) {
 		System.out.println("Welcome to the Retail Store!");
