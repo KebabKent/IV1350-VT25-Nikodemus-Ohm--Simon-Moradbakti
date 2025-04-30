@@ -2,108 +2,108 @@ package se.kth.iv1350.retailStore.dto;
 
 public class ItemDTO {
 
-	private final String itemId;
-	private final String itemName;
-	private final Float itemPrice;
-	private final Float itemVAT;
-	private final String itemDescription;
+    private final String itemId;
+    private final String itemName;
+    private final Float itemPrice;
+    private final Float itemVAT;
+    private final String itemDescription;
 
-	private final int quantity; // ta bort?
+    private final int quantity; // ta bort?
 
-	/**
-	 * Skapar ett nytt objekt som beskriver en vara med alla dess attribut.
-	 * 
-	 * @param itemId ID för varan.
-	 * @param itemName Namn på varan.
-	 * @param itemPrice Pris på varan exklusive moms.
-	 * @param itemVAT Moms för varan.
-	 * @param itemDescription Kort beskrivning av varan.
-	 * @param quantity Antal av varan.
-	 */
-	public ItemDTO(
-			String itemId,
-			String itemName,
-			Float itemPrice,
-			Float itemVAT,
-			String itemDescription,
-			int quantity) {
-		this.itemId = itemId;
-		this.itemName = itemName;
-		this.itemPrice = itemPrice;
-		this.itemVAT = itemVAT;
-		this.itemDescription = itemDescription;
-		this.quantity = quantity;
-	}
+    /**
+     * Creates a new object that describes an item with all its attributes.
+     * 
+     * @param itemId The ID of the item.
+     * @param itemName The name of the item.
+     * @param itemPrice The price of the item excluding VAT.
+     * @param itemVAT The VAT of the item.
+     * @param itemDescription A short description of the item.
+     * @param quantity The quantity of the item.
+     */
+    public ItemDTO(
+            String itemId,
+            String itemName,
+            Float itemPrice,
+            Float itemVAT,
+            String itemDescription,
+            int quantity) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+        this.itemVAT = itemVAT;
+        this.itemDescription = itemDescription;
+        this.quantity = quantity;
+    }
 
-	/**
-	 * Skapar en ny kopia av ett befintligt ItemDTO-objekt men med ett annat antal.
-	 * 
-	 * @param itemToCopy Det objekt som ska kopieras.
-	 * @param quantity Antal som ska sättas för den nya kopian.
-	 */
-	public ItemDTO(
-			ItemDTO itemToCopy,
-			int quantity) {
-		this.itemId = itemToCopy.getItemId();
-		this.itemName = itemToCopy.getItemName();
-		this.itemPrice = itemToCopy.getItemPrice();
-		this.itemVAT = itemToCopy.getItemVAT();
-		this.itemDescription = itemToCopy.getItemDescription();
-		this.quantity = quantity;
-	}
+    /**
+     * Creates a new copy of an existing ItemDTO object with a different quantity.
+     * 
+     * @param itemToCopy The object to be copied.
+     * @param quantity The quantity to be set for the new copy.
+     */
+    public ItemDTO(
+            ItemDTO itemToCopy,
+            int quantity) {
+        this.itemId = itemToCopy.getItemId();
+        this.itemName = itemToCopy.getItemName();
+        this.itemPrice = itemToCopy.getItemPrice();
+        this.itemVAT = itemToCopy.getItemVAT();
+        this.itemDescription = itemToCopy.getItemDescription();
+        this.quantity = quantity;
+    }
 
-	/**
-	 * Hämtar varans ID.
-	 * 
-	 * @return ID som en sträng.
-	 */
-	public String getItemId() {
-		return itemId;
-	}
+    /**
+     * Retrieves the item's ID.
+     * 
+     * @return The ID as a string.
+     */
+    public String getItemId() {
+        return itemId;
+    }
 
-	/**
-	 * Hämtar namnet på varan.
-	 * 
-	 * @return Namnet som en sträng.
-	 */
-	public String getItemName() {
-		return itemName;
-	}
+    /**
+     * Retrieves the name of the item.
+     * 
+     * @return The name as a string.
+     */
+    public String getItemName() {
+        return itemName;
+    }
 
-	/**
-	 * Hämtar priset för varan utan moms.
-	 * 
-	 * @return Priset som ett float-värde.
-	 */
-	public Float getItemPrice() {
-		return itemPrice;
-	}
+    /**
+     * Retrieves the price of the item excluding VAT.
+     * 
+     * @return The price as a float value.
+     */
+    public Float getItemPrice() {
+        return itemPrice;
+    }
 
-	/**
-	 * Hämtar momsen för varan.
-	 * 
-	 * @return Momssatsen som ett float-värde.
-	 */
-	public Float getItemVAT() {
-		return itemVAT;
-	}
+    /**
+     * Retrieves the VAT of the item.
+     * 
+     * @return The VAT rate as a float value.
+     */
+    public Float getItemVAT() {
+        return itemVAT;
+    }
 
-	/**
-	 * Hämtar beskrivningen av varan.
-	 * 
-	 * @return En kort beskrivning som en sträng.
-	 */
-	public String getItemDescription() {
-		return itemDescription;
-	}
+    /**
+     * Retrieves the description of the item.
+     * 
+     * @return A short description as a string.
+     */
+    public String getItemDescription() {
+        return itemDescription;
+    }
 
-	/**
-	 * Hämtar hur många av varan som finns angivna.
-	 * 
-	 * @return Antalet som ett heltal.
-	 */
-	public int getItemQuantity() {
-		return quantity;
-	}
+    /**
+     * Retrieves how many of the item are specified.
+     * 
+     * @return The quantity as an integer.
+     */
+    public int getItemQuantity() {
+        return quantity;
+    }
 
 }
