@@ -11,14 +11,29 @@ public class ItemDTO {
     private final int quantity;
 
     /**
+     * 
+     * Creates a new object with only @param itemId and @param quantity,
+     * the rest are set as null, as they are typically not used for searching
+     * 
+     */
+    public ItemDTO(String itemId, int quantity) {
+        this.itemId = itemId;
+        this.itemName = null;
+        this.itemPrice = null;
+        this.itemVAT = null;
+        this.itemDescription = null;
+        this.quantity = quantity;
+    }
+
+    /**
      * Creates a new object that describes an item with all its attributes.
      * 
-     * @param itemId The ID of the item.
-     * @param itemName The name of the item.
-     * @param itemPrice The price of the item excluding VAT.
-     * @param itemVAT The VAT of the item.
+     * @param itemId          The ID of the item.
+     * @param itemName        The name of the item.
+     * @param itemPrice       The price of the item excluding VAT.
+     * @param itemVAT         The VAT of the item.
      * @param itemDescription A short description of the item.
-     * @param quantity The quantity of the item.
+     * @param quantity        The quantity of the item.
      */
     public ItemDTO(
             String itemId,
@@ -39,7 +54,7 @@ public class ItemDTO {
      * Creates a new copy of an existing ItemDTO object with a different quantity.
      * 
      * @param itemToCopy The object to be copied.
-     * @param quantity The quantity to be set for the new copy.
+     * @param quantity   The quantity to be set for the new copy.
      */
     public ItemDTO(
             ItemDTO itemToCopy,

@@ -10,72 +10,58 @@ import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
 public class View {
-    public Controller controller;
+        public Controller controller;
 
-    public View(Controller controller) {
-        this.controller = controller;
-    }
+        public View(Controller controller) {
+                this.controller = controller;
+        }
 
-    /**
-     * Sample execution method to simulate a sale process.
-     * Registers items, applies discounts, ends the sale, and processes payment.
-     */
-    public void sampleExecution() {
-        controller.newSale();
+        /**
+         * Sample execution method to simulate a sale process.
+         * Registers items, applies discounts, ends the sale, and processes payment.
+         */
+        public void sampleExecution() {
+                controller.newSale();
 
-        ItemDTO searchedItem = new ItemDTO(
-                "001",
-                null,
-                null,
-                null,
-                null,
-                1);
+                ItemDTO searchedItem = new ItemDTO(
+                                "001",
+                                1);
 
-        ItemDTO foundItem = controller.registerItem(searchedItem);
+                ItemDTO foundItem = controller.registerItem(searchedItem);
 
-        searchedItem = new ItemDTO(
-                "003",
-                null,
-                null,
-                null,
-                null,
-                1);
+                searchedItem = new ItemDTO(
+                                "003",
+                                1);
 
-        foundItem = controller.registerItem(searchedItem);
+                foundItem = controller.registerItem(searchedItem);
 
-        searchedItem = new ItemDTO(
-                "001",
-                null,
-                null,
-                null,
-                null,
-                100);
+                searchedItem = new ItemDTO(
+                                "001",
+                                100);
 
-        foundItem = controller.registerItem(searchedItem);
+                foundItem = controller.registerItem(searchedItem);
 
-        SaleDTO saleInfo = controller.fetchDiscount("123");
-        System.out.println("Total price: " + saleInfo.returnTotalPrice());
-        System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
-        System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
+                SaleDTO saleInfo = controller.fetchDiscount("123");
+                System.out.println("Total price: " + saleInfo.returnTotalPrice());
+                System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
+                System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
+                System.out.println();
 
-        searchedItem = new ItemDTO(
-                "002",
-                null,
-                null,
-                null,
-                null,
-                1337);
+                searchedItem = new ItemDTO(
+                                "002",
+                                1337);
 
-        foundItem = controller.registerItem(searchedItem);
+                foundItem = controller.registerItem(searchedItem);
 
-        saleInfo = controller.endSale();
-        System.out.println("Total price: " + saleInfo.returnTotalPrice());
-        System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
-        System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
+                saleInfo = controller.endSale();
+                System.out.println("Total price: " + saleInfo.returnTotalPrice());
+                System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
+                System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
+                System.out.println();
 
-        AmountDTO paidAmount = new AmountDTO(25000);
-        SaleDTO paymentInfo = controller.payForSale(paidAmount);
+                AmountDTO paidAmount = new AmountDTO(25000);
+                SaleDTO paymentInfo = controller.payForSale(paidAmount);
 
-        System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
-    }
+                System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
+        }
 }

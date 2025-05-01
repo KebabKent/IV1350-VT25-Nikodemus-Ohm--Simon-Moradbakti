@@ -31,6 +31,7 @@ public class AccountingRegister {
 		for (SaleDTO saleDTO : this.salesHistory) {
 			System.out.println("Sale ID: " + saleDTO.getSaleId());
 		}
+		System.out.println();
 	}
 
 }
