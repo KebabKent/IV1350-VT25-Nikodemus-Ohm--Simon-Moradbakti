@@ -68,13 +68,6 @@ public class ItemListHandlerTest {
     }
 
     @Test
-    public void testSearchItemDTOInstanceIllegalInput() {
-        Object searchedItem = new Object();
-        result = ItemListHandler.searchItemDTOInstance((ItemDTO) searchedItem, storedItems);
-        assertNull(result, "Searching for an illegal input should return null.");
-    }
-
-    @Test
     public void testSearchItemDTOInstanceNotExist() {
         searchedItem = new ItemDTO(
                 "004",
@@ -101,14 +94,7 @@ public class ItemListHandlerTest {
     public void testSearchItemDTOPositionNull() {
         searchedItem = null;
         resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertNull(result, "Searching for null should return null.");
-    }
-
-    @Test
-    public void testSearchItemDTOPositionIllegalInput() {
-        Object searchedItem = new Object();
-        resultPosition = ItemListHandler.searchItemDTOPosition((ItemDTO) searchedItem, storedItems);
-        assertNull(result, "Searching for an illegal input should return null.");
+        assertNull(resultPosition, "Searching for null should return null.");
     }
 
     @Test
@@ -118,7 +104,7 @@ public class ItemListHandlerTest {
                 100);
 
         resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertNull(result, "Searching for an item that does not exist should return null.");
+        assertNull(resultPosition, "Searching for an item that does not exist should return null.");
     }
 
     @Test
@@ -130,7 +116,8 @@ public class ItemListHandlerTest {
         expectedPosition = 2;
 
         resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertEquals(expectedItem, result, "Searching for an existing item should return the items index in the list.");
+        assertEquals(expectedPosition, resultPosition,
+                "Searching for an existing item should return the items index in the list.");
     }
 
     @Test

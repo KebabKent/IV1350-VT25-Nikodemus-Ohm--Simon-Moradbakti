@@ -36,13 +36,13 @@ public class Sale {
 	 * If it does not exist, it adds the item to the register.
 	 * 
 	 * @param searchedItem The item to register.
-	 * @param creator The registry handler used to retrieve item info.
+	 * @param creator      The registry handler used to retrieve item info.
 	 * @return The registered item.
 	 */
 	public ItemDTO registerItem(ItemDTO searchedItem, RegistryHandler creator) {
 		Integer foundItemPosition = itemRegister.findItem(searchedItem);
 		if (foundItemPosition != null) {
-			return itemRegister.updateItemDTO(foundItemPosition, searchedItem.getItemQuantity());
+			return itemRegister.updateItemQuantity(foundItemPosition, searchedItem.getItemQuantity());
 		}
 
 		ItemDTO foundItem = creator.retrieveItemInfo(searchedItem);
@@ -86,9 +86,11 @@ public class Sale {
 	}
 
 	/**
-	 * Calculates the total price, applies any discounts, and finalizes the sale information.
+	 * Calculates the total price, applies any discounts, and finalizes the sale
+	 * information.
 	 * 
-	 * @return The updated sale information with the total price, discount, and final details.
+	 * @return The updated sale information with the total price, discount, and
+	 *         final details.
 	 */
 	public SaleDTO getSaleDTO() {
 		this.payment.calculateTotalPrice(itemRegister.getItemList());

@@ -54,7 +54,7 @@ public class InventoryRegister {
 	 *
 	 * @return A list of available items.
 	 */
-	private List<ItemDTO> fetchItemsFromDB() {
+	List<ItemDTO> fetchItemsFromDB() {
 		return this.fetchedItems;
 	}
 
@@ -77,17 +77,22 @@ public class InventoryRegister {
 	 * Prints the current state of the inventory after the sale.
 	 *
 	 * @param sale The sale that contains the sold items and their quantities.
+	 * @return true if the update was successful, false otherwise.
 	 */
-	void updateRegister(SaleDTO sale) {
+	boolean updateRegister(SaleDTO sale) {
 		for (ItemDTO item : sale.getItemList()) {
-			for (ItemDTO fetchedItem : this.fetchedItems) {
-				if (item.getItemId().equals(fetchedItem.getItemId())) {
-					fetchedItem = new ItemDTO(fetchedItem, fetchedItem.getItemQuantity() - item.getItemQuantity());
+			for (int i = 0; i < this.fetchedItems.size(); i++) {
+				if (item.getItemId().equals(fetchedItems.get(i).getItemId())) {
+					fetchedItems.set(i, new ItemDTO(
+							fetchedItems.get(i),
+							fetchedItems.get(i).getItemQuantity() -
+									item.getItemQuantity()));
 				}
 			}
 		}
 
 		System.out.println("*************Inventory register*************");
 		ItemListHandler.printItemList(this.fetchedItems);
+		return true;
 	}
 }

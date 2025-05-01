@@ -21,13 +21,6 @@ public class PaymentTest {
     }
 
     @Test
-    public void testSetTotalPrice() {
-        float expectedPrice = 100.0f;
-        payment.setTotalPrice(expectedPrice);
-        assertEquals(expectedPrice, payment.returnTotalPrice(), "Total price should be set correctly.");
-    }
-
-    @Test
     public void testCalculateTotalPrice() {
 
     }

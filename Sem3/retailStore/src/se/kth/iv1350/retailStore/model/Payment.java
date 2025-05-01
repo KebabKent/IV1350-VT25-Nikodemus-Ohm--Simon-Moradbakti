@@ -18,28 +18,29 @@ public class Payment {
 
     /**
      * Constructor that initializes the total price as 0.
-     * The Payment class is used to calculate and store the total price, VAT, discounts and change for a sale.
+     * The Payment class is used to calculate and store the total price, VAT,
+     * discounts and change for a sale.
      */
     public Payment() {
         this.totalPrice = new AmountDTO(0);
+        this.totalVAT = new AmountDTO(0);
+        this.totalVATPercentage = new AmountDTO(0);
+        this.discountedPrice = new AmountDTO(0);
+        this.discountPercentage = 0;
+        this.amountPaid = new AmountDTO(0);
+        this.change = new AmountDTO(0);
     }
 
     /**
-     * Sets the total price for the payment.
-     * 
-     * @param totalPrice The total price of the sale, passed as a float.
-     */
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = new AmountDTO(totalPrice);
-    }
-
-    /**
-     * Calculates the total price, VAT, and VAT percentage for the items in the sale.
-     * Loops through each item to calculate the total price, VAT, and average VAT percentage.
+     * Calculates the total price, VAT, and VAT percentage for the items in the
+     * sale.
+     * Loops through each item to calculate the total price, VAT, and average VAT
+     * percentage.
      * 
      * @param itemList The list of items in the sale.
      * @return The total price as an AmountDTO.
-     * the for-Loop iterates through all items and calculate the total price, VAT, and item quantity
+     *         the for-Loop iterates through all items and calculate the total
+     *         price, VAT, and item quantity
      */
     public AmountDTO calculateTotalPrice(List<ItemDTO> itemList) {
         float calculatedPrice = 0;
@@ -96,7 +97,8 @@ public class Payment {
     }
 
     /**
-     * Calculates the discounted price based on the total price and the discount percentage.
+     * Calculates the discounted price based on the total price and the discount
+     * percentage.
      * 
      * @return The discounted price as an AmountDTO.
      */
@@ -135,7 +137,8 @@ public class Payment {
 
     /**
      * Calculates the change to be returned to the customer.
-     * The change is calculated based on the amount paid and either the total price or the discounted price.
+     * The change is calculated based on the amount paid and either the total price
+     * or the discounted price.
      *
      * If there's no discount, calculate change based on the total price
      * If there's a discount, calculate change based on the discounted price

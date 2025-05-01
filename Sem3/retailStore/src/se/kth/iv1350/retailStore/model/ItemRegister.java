@@ -39,7 +39,7 @@ public class ItemRegister {
      * @param quantity          The quantity to add to the item.
      * @return The updated itemDTO.
      */
-    public ItemDTO updateItemDTO(Integer foundItemPosition, int quantity) {
+    public ItemDTO updateItemQuantity(Integer foundItemPosition, int quantity) {
 
         ItemDTO foundItem = this.itemList.get(foundItemPosition);
 

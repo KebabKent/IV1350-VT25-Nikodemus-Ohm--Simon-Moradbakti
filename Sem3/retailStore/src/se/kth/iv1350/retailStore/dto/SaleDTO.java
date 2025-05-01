@@ -46,15 +46,16 @@ public class SaleDTO {
 		this.discountedPrice = payment.returnDiscountedPrice();
 		this.discountPercentage = payment.returnDiscountedPercentage();
 
-		this.amountPaid = null;
-		this.change = null;
+		this.amountPaid = payment.getAmountPaid();
+		this.change = payment.getChange();
 	}
 
 	/**
-	 * Creates a new SaleDTO that includes payment details like amount paid and change.
+	 * Creates a new SaleDTO that includes payment details like amount paid and
+	 * change.
 	 *
-	 * @param saleDTO  The existing sale data without payment info.
-	 * @param payment  The payment that was made by the customer.
+	 * @param saleDTO The existing sale data without payment info.
+	 * @param payment The payment that was made by the customer.
 	 */
 	public SaleDTO(SaleDTO saleDTO, Payment payment) {
 		this.saleID = saleDTO.getSaleId();
