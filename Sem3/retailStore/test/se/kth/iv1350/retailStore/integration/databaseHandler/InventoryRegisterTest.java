@@ -1,5 +1,4 @@
 package se.kth.iv1350.retailStore.integration.databaseHandler;
-
 import se.kth.iv1350.retailStore.model.ItemRegister;
 import se.kth.iv1350.retailStore.model.Payment;
 import se.kth.iv1350.retailStore.model.Period;
