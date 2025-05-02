@@ -11,9 +11,7 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,6 +63,7 @@ public class InventoryRegisterTest {
         expectedItem = null;
     }
 
+    // Test for when searched item is null
     @Test
     public void testRetrieveItemInfoNull() {
         searchedItem = null;
@@ -72,37 +71,38 @@ public class InventoryRegisterTest {
         assertNull(result, "Searching for null should return null.");
     }
 
+    // Test for when searched item doesn't exist in the list
     @Test
     public void testRetrieveItemInfoInstanceNotExist() {
         searchedItem = new ItemDTO(
-                "004",
+                "004", // non-existing ID
                 100);
 
         result = inventoryRegister.retrieveItemInfo(searchedItem);
-        ;
         assertNull(result, "Searching for an item that does not exist should return null.");
     }
 
+    // Test for when searched item exists in the list (they must exist)
     @Test
     public void testRetrieveItemInfoInstanceExists() {
         searchedItem = new ItemDTO(
-                "003",
+                "003", // existing item ID
                 5000);
 
         expectedItem = fetchedItems.get(2);
 
         result = inventoryRegister.retrieveItemInfo(searchedItem);
-        ;
         assertEquals(expectedItem, result, "Searching for an existing item should return the correct item.");
     }
 
+    // Test for updating register with existing quantities
     @Test
     public void testUpdateRegisterWithExistingQuantities() {
         itemRegister = new ItemRegister();
         itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, 5);
+        itemRegister.updateItemQuantity(0, 5); // updating quantity of the first item
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
@@ -112,13 +112,14 @@ public class InventoryRegisterTest {
         assertEquals(1000 - 10, updatedItem.getItemQuantity(), "The item quantity should be updated correctly.");
     }
 
+    // Test for updating register with non-existing quantities (negative values, which can't exist in a store)
     @Test
     public void testUpdateRegisterWithNonExistingQuantities() {
         itemRegister = new ItemRegister();
         itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, -10);
+        itemRegister.updateItemQuantity(0, -10); // negative quantity shouldn't be allowed
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
@@ -127,26 +128,28 @@ public class InventoryRegisterTest {
                 "Updating with non-existing quantities should return false.");
     }
 
+    // Test for updating register with quantities which are bigger than the stock.
+    // (as you can't sell more items than exists in stock)
     @Test
     public void testUpdateRegisterWithQuantitiesAboveAvailableQuantity() {
         itemRegister = new ItemRegister();
         itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, 3000);
+        itemRegister.updateItemQuantity(0, 3000); // too many items
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
 
-        assertFalse(inventoryRegister.updateRegister(sale),
-                "Updating with a quantity above available stock should return false.");
+        assertFalse(inventoryRegister.updateRegister(sale), // should be false!
+                
     }
 
+    // Test for updating register with a non-existent (Null in this case!) item
     @Test
     public void testUpdateRegisterWithNonExistantItem() {
-
-        ItemDTO nonExistingItem = new ItemDTO("999",
+        ItemDTO nonExistingItem = new ItemDTO("999", // non-existent item ID
                 "NonExistantItem",
                 0.0f,
                 0.0f,
@@ -157,7 +160,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.addItem(nonExistingItem, 10);
+        itemRegister.addItem(nonExistingItem, 10); // add non-existent item
         itemRegister.updateItemQuantity(0, 5);
         registeredItems = itemRegister.getItemList();
 
