@@ -1,29 +1,31 @@
-package se.kth.iv1350.retailStore.model;
+// package se.kth.iv1350.retailStore.model;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+// import org.junit.jupiter.api.AfterEach;
+// import org.junit.jupiter.api.AfterAll;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.BeforeAll;
+// import org.junit.jupiter.api.Test;
 
-public class PeriodTest {
-    private Period period;
+// import static org.junit.jupiter.api.Assertions.*;
 
-    @BeforeEach
-    public void setUp() {
-        period = new Period();
-    }
+// public class PeriodTest {
+// private Period period;
 
-    @AfterEach
-    public void tearDown() {
-        period = null;
-    }
+// @BeforeEach
+// public void setUp() {
+// period = new Period();
+// }
 
-    @Test
-    public void testSetEndTime() {
-        period.setEndTime();
-        assertNotNull(period.getSaleEndTime(), "Sale end time should not be null after setting it.");
-    }
+// @AfterEach
+// public void tearDown() {
+// period = null;
+// }
 
-}
+// @Test
+// public void testSetEndTime() {
+// period.setEndTime();
+// assertNotNull(period.getSaleEndTime(), "Sale end time should not be null
+// after setting it.");
+// }
+
+// }

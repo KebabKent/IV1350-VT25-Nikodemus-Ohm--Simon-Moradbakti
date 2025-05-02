@@ -143,7 +143,8 @@ public class InventoryRegisterTest {
         setUpSale();
         inventoryRegister.updateRegister(sale);
 
-        assertFalse(inventoryRegister.updateRegister(sale)); // should be false!
+        assertFalse(inventoryRegister.updateRegister(sale),
+                "Updating with quantities above avaiable quantity should return false."); // should be false!
 
     }
 
