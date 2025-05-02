@@ -1,4 +1,5 @@
 package se.kth.iv1350.retailStore.integration.databaseHandler;
+
 import se.kth.iv1350.retailStore.model.ItemRegister;
 import se.kth.iv1350.retailStore.model.Payment;
 import se.kth.iv1350.retailStore.model.Period;
@@ -111,7 +112,8 @@ public class InventoryRegisterTest {
         assertEquals(1000 - 10, updatedItem.getItemQuantity(), "The item quantity should be updated correctly.");
     }
 
-    // Test for updating register with non-existing quantities (negative values, which can't exist in a store)
+    // Test for updating register with non-existing quantities (negative values,
+    // which can't exist in a store)
     @Test
     public void testUpdateRegisterWithNonExistingQuantities() {
         itemRegister = new ItemRegister();
@@ -141,8 +143,8 @@ public class InventoryRegisterTest {
         setUpSale();
         inventoryRegister.updateRegister(sale);
 
-        assertFalse(inventoryRegister.updateRegister(sale), // should be false!
-                
+        assertFalse(inventoryRegister.updateRegister(sale)); // should be false!
+
     }
 
     // Test for updating register with a non-existent (Null in this case!) item
