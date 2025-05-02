@@ -1,8 +1,12 @@
 package se.kth.iv1350.retailStore.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import se.kth.iv1350.retailStore.controller.Controller;
 
 import se.kth.iv1350.retailStore.model.Payment;
+import se.kth.iv1350.retailStore.util.ItemListHandler;
 import se.kth.iv1350.retailStore.model.ItemRegister;
 
 import se.kth.iv1350.retailStore.dto.AmountDTO;
@@ -21,47 +25,82 @@ public class View {
          * Registers items, applies discounts, ends the sale, and processes payment.
          */
         public void sampleExecution() {
+                System.out.println("View: New Sale.");
+                System.out.println();
                 controller.newSale();
 
+                List<ItemDTO> itemList = new ArrayList<>();
                 ItemDTO searchedItem = new ItemDTO(
                                 "001",
                                 1);
-
-                ItemDTO foundItem = controller.registerItem(searchedItem);
+                itemList.add(searchedItem);
 
                 searchedItem = new ItemDTO(
                                 "003",
                                 1);
+                itemList.add(searchedItem);
 
-                foundItem = controller.registerItem(searchedItem);
+                searchedItem = new ItemDTO(
+                                "004",
+                                1);
+                itemList.add(searchedItem);
 
                 searchedItem = new ItemDTO(
                                 "001",
                                 100);
-
-                foundItem = controller.registerItem(searchedItem);
-
-                SaleDTO saleInfo = controller.fetchDiscount("123");
-                System.out.println("Total price: " + saleInfo.returnTotalPrice());
-                System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
-                System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
-                System.out.println();
+                itemList.add(searchedItem);
 
                 searchedItem = new ItemDTO(
                                 "002",
                                 1337);
+                itemList.add(searchedItem);
 
-                foundItem = controller.registerItem(searchedItem);
+                ItemDTO foundItem;
+                SaleDTO saleInfo;
 
+                int i = 0;
+                while (true) {
+                        searchedItem = itemList.get(i);
+                        System.out.println("View: Registering item " + (i + 1));
+                        foundItem = controller.registerItem(searchedItem);
+                        if (foundItem == null) {
+                                System.out.println("Item not found in the inventory.");
+                        } else {
+                                saleInfo = controller.getSaleInfo();
+                                ItemListHandler.printItem(foundItem);
+                                printPaymentInfo(saleInfo);
+                        }
+                        System.out.println();
+
+                        i++;
+                        if (i >= itemList.size()) {
+                                break;
+                        }
+                }
+
+                // Ending sale
+                System.out.println("View: Ending sale");
                 saleInfo = controller.endSale();
-                System.out.println("Total price: " + saleInfo.returnTotalPrice());
-                System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
-                System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
+                printPaymentInfo(saleInfo);
                 System.out.println();
 
+                // Fetching discount
+                System.out.println("View: Fetching discount for customer ID 123");
+                saleInfo = controller.fetchDiscount("123");
+                printPaymentInfo(saleInfo);
+                System.out.println();
+
+                // Processing payment
+                System.out.println("View: Processing payment");
                 AmountDTO paidAmount = new AmountDTO(25000);
                 SaleDTO paymentInfo = controller.payForSale(paidAmount);
 
                 System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
+        }
+
+        public void printPaymentInfo(SaleDTO saleInfo) {
+                System.out.println("Total price: " + saleInfo.returnTotalPrice());
+                System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());
+                System.out.println("Discounted percentage: " + saleInfo.returnDiscountedPercentage());
         }
 }

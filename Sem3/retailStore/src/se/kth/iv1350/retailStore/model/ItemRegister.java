@@ -46,7 +46,6 @@ public class ItemRegister {
         foundItem = new ItemDTO(foundItem, foundItem.getItemQuantity() + quantity);
 
         this.itemList.set(foundItemPosition, foundItem);
-        ItemListHandler.printItemList(itemList);
 
         return foundItem;
     }
@@ -56,12 +55,12 @@ public class ItemRegister {
      * 
      * @param item     The item to add to the register.
      * @param quantity The quantity of the item to add.
+     * @return The added item.
      */
-    public void addItem(ItemDTO item, int quantity) {
+    public ItemDTO addItem(ItemDTO item, int quantity) {
         item = new ItemDTO(item, quantity);
-
         this.itemList.add(item);
-        ItemListHandler.printItemList(itemList);
+        return item;
     }
 
     /**

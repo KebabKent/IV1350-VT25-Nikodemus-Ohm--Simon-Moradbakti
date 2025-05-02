@@ -48,17 +48,37 @@ public class ItemListHandler {
         return registeredItem.getItemId().equals(searchedItem.getItemId());
     }
 
+    /**
+     * 
+     * prints a list of items to the console,
+     * the index of a item is printed
+     * 
+     * @param itemList The list of items to print.
+     * 
+     */
     public static void printItemList(List<ItemDTO> itemList) {
         int i = 0;
         for (ItemDTO item : itemList) {
-            System.out.println("    Item: " + i++ + "\n" +
-                    "       ID: " + item.getItemId() + "\n" +
-                    "       Name: " + item.getItemName() + "\n" +
-                    "       Quantity: " + item.getItemQuantity() + "\n" +
-                    "       Price: " + item.getItemPrice() + "\n" +
-                    "       VAT: " + item.getItemVAT() + "\n" +
-                    "       Price for quantity: " + (item.getItemPrice() * item.getItemQuantity()) + "\n");
+            System.out.println("    Item: " + i++);
+            printItem(item);
+            System.out.println();
         }
-        System.out.println();
+    }
+
+    /**
+     * 
+     * Prints detailed information about a specific item to the console.
+     * Includes ID, name, quantity, unit price, VAT, and total price for the
+     * quantity.
+     * 
+     * @param item The item whose details should be printed.
+     */
+    public static void printItem(ItemDTO item) {
+        System.out.println("       ID: " + item.getItemId() + "\n" +
+                "       Name: " + item.getItemName() + "\n" +
+                "       Quantity: " + item.getItemQuantity() + "\n" +
+                "       Price: " + item.getItemPrice() + "\n" +
+                "       VAT: " + item.getItemVAT() + "\n" +
+                "       Price for quantity: " + (item.getItemPrice() * item.getItemQuantity()));
     }
 }

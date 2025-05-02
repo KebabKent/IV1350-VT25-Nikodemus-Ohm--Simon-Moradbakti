@@ -38,7 +38,7 @@ public class InventoryRegister {
 				"003",
 				"Bread",
 				25.0f,
-				0.12f,
+				0.15f,
 				"Whole grain bread loaf",
 				5000);
 
@@ -69,7 +69,8 @@ public class InventoryRegister {
 	}
 
 	/**
-	 * Simulates updating the inventory by reducing stock quantities based on the sale.
+	 * Simulates updating the inventory by reducing stock quantities based on the
+	 * sale.
 	 * The update is stored in memory but not written to any external database.
 	 * Prints the updated inventory state.
 	 *

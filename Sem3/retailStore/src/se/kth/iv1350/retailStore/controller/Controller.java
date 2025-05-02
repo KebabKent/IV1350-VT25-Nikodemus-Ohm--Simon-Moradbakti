@@ -40,6 +40,10 @@ public class Controller {
         return foundItem;
     }
 
+    public SaleDTO getSaleInfo() {
+        return sale.getSaleInfo();
+    }
+
     /**
      * Fetches the discount for a given customer and applies it to the sale.
      * 
@@ -64,7 +68,8 @@ public class Controller {
     }
 
     /**
-     * Processes the payment for the sale and updates the cash register and other registers.
+     * Processes the payment for the sale and updates the cash register and other
+     * registers.
      * Prints the receipt after the payment is completed.
      * 
      * @param amount The amount paid by the customer.

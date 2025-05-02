@@ -3,6 +3,7 @@ package se.kth.iv1350.retailStore.model;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 
+import java.math.RoundingMode;
 import java.util.List;
 
 public class Payment {
@@ -49,13 +50,13 @@ public class Payment {
 
         for (ItemDTO item : itemList) {
             calculatedPrice += item.getItemPrice() * item.getItemQuantity();
-            calculatedVAT += item.getItemVAT() * item.getItemQuantity();
+            calculatedVAT += item.getItemPrice() * item.getItemVAT() * item.getItemQuantity();
             itemQuantity += item.getItemQuantity();
         }
 
         this.totalPrice = new AmountDTO(calculatedPrice);
-        this.totalVATPercentage = new AmountDTO(calculatedVAT / itemQuantity);
-        this.totalVAT = new AmountDTO(calculatedPrice * (calculatedVAT / itemQuantity));
+        this.totalVATPercentage = new AmountDTO(Math.round(calculatedVAT / calculatedPrice * 10000.0f) / 10000.0f);
+        this.totalVAT = new AmountDTO(Math.round(calculatedVAT * 10000.0f) / 10000.0f);
 
         return this.totalPrice;
     }

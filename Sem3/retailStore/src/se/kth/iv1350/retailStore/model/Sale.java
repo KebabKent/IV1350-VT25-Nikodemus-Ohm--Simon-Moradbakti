@@ -46,8 +46,20 @@ public class Sale {
 		}
 
 		ItemDTO foundItem = creator.retrieveItemInfo(searchedItem);
-		this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
-		return foundItem;
+		if (foundItem == null) {
+			return null;
+		}
+
+		return this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
+	}
+
+	/**
+	 * Retrieves the sale information, including total price and discount details.
+	 * 
+	 * @return The sale information.
+	 */
+	public SaleDTO getSaleInfo() {
+		return getSaleDTO();
 	}
 
 	/**
