@@ -49,8 +49,7 @@ public class InventoryRegister {
 
 	/**
 	 * Simulates fetching items from a database.
-	 * This is a private method that creates a static list of items with hardcoded
-	 * values.
+	 * Returns the static list of available items.
 	 *
 	 * @return A list of available items.
 	 */
@@ -70,11 +69,9 @@ public class InventoryRegister {
 	}
 
 	/**
-	 * Updates the inventory register based on the sold items in the given sale.
-	 * It subtracts the sold quantity from the stock. The update is currently not
-	 * stored
-	 * because new ItemDTOs are created but not saved back in the list.
-	 * Prints the current state of the inventory after the sale.
+	 * Simulates updating the inventory by reducing stock quantities based on the sale.
+	 * The update is stored in memory but not written to any external database.
+	 * Prints the updated inventory state.
 	 *
 	 * @param sale The sale that contains the sold items and their quantities.
 	 * @return true if the update was successful, false otherwise.
