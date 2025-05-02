@@ -7,21 +7,33 @@ import se.kth.iv1350.retailStore.model.Payment;
 import se.kth.iv1350.retailStore.model.Period;
 import se.kth.iv1350.retailStore.model.Sale;
 
+/**
+ * This class represents the data transfer object (DTO) for a sale.
+ * It contains all relevant information about a sale, including sale ID,
+ * items involved in the sale, total price, VAT, discount, and payment details.
+ */
 public class SaleDTO {
+
 	private final String saleID;
 
 	private final List<ItemDTO> itemList;
 
 	private final java.time.LocalTime saleTime;
+
 	private final java.time.LocalTime saleEndTime;
 
 	private final float totalPrice;
+
 	private final float totalVAT;
+
 	private final float totalVATPercentage;
+
 	private final float discountedPrice;
+
 	private final float discountPercentage;
 
 	private final AmountDTO amountPaid;
+
 	private final AmountDTO change;
 
 	/**

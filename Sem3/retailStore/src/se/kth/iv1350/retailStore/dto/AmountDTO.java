@@ -1,5 +1,10 @@
 package se.kth.iv1350.retailStore.dto;
 
+/**
+ * This class represents a monetary amount.
+ * It stores a single amount value (e.g., total price, payment amount, change)
+ * as a float.
+ */
 public class AmountDTO {
 
     private final float amount;

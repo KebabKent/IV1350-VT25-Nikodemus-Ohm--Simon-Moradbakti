@@ -1,11 +1,20 @@
 package se.kth.iv1350.retailStore.dto;
 
+/**
+ * Represents an item with its attributes and quantity.
+ * This class is used to transfer item data between different layers of the
+ * application.
+ */
 public class ItemDTO {
 
     private final String itemId;
+
     private final String itemName;
+
     private final Float itemPrice;
+
     private final Float itemVAT;
+
     private final String itemDescription;
 
     private final int quantity;
@@ -15,6 +24,8 @@ public class ItemDTO {
      * Creates a new object with only @param itemId and @param quantity,
      * the rest are set as null, as they are typically not used for searching
      * 
+     * @param itemId   The ID of the item.
+     * @param quantity The quantity of the item.
      */
     public ItemDTO(String itemId, int quantity) {
         this.itemId = itemId;
@@ -120,5 +131,4 @@ public class ItemDTO {
     public int getItemQuantity() {
         return quantity;
     }
-
 }

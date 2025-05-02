@@ -7,6 +7,11 @@ import se.kth.iv1350.retailStore.dto.ItemDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The ItemRegister class manages a list of items.
+ * It allows adding new items, updating item quantities, and searching for items
+ * in the list.
+ */
 public class ItemRegister {
 
     private List<ItemDTO> itemList;

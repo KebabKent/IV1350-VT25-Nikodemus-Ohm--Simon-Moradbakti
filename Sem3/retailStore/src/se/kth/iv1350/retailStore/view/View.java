@@ -13,9 +13,23 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
+/**
+ * The View displays information to the user and interacts with the Controller.
+ * It registers items, applies discounts, and processeces payments.
+ */
 public class View {
-        public Controller controller;
 
+        private Controller controller;
+
+        /**
+         * Constructs a new View object with the specified controller.
+         * This constructor initializes the view and assigns the provided controller for
+         * handling the logic
+         * and communication between the model and the view.
+         *
+         * @param controller The controller that manages the interaction with the model
+         *                   and controls the flow of data.
+         */
         public View(Controller controller) {
                 this.controller = controller;
         }
@@ -98,6 +112,12 @@ public class View {
                 System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
         }
 
+        /**
+         * Prints the payment information including total price, discounted price,
+         * and discounted percentage.
+         * 
+         * @param saleInfo The SaleDTO containing the payment information.
+         */
         public void printPaymentInfo(SaleDTO saleInfo) {
                 System.out.println("Total price: " + saleInfo.returnTotalPrice());
                 System.out.println("Discounted price: " + saleInfo.returnDiscountedPrice());

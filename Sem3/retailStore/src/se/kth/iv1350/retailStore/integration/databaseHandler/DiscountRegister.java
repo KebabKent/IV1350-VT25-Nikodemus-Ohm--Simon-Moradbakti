@@ -3,7 +3,11 @@ package se.kth.iv1350.retailStore.integration.databaseHandler;
 import se.kth.iv1350.retailStore.model.ItemRegister;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 
-public class DiscountRegister {
+/**
+ * This class represents the discount register, which is responsible for
+ * storing the details of any discounts applied to sales.
+ */
+class DiscountRegister {
 
 	/**
 	 * Returns a discount based on the contents of the item register.

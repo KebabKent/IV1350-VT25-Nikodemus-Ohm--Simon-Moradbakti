@@ -6,6 +6,12 @@ import se.kth.iv1350.retailStore.dto.ItemDTO;
 import java.math.RoundingMode;
 import java.util.List;
 
+/**
+ * The Payment class is responsible for handling paymen.
+ * It calculates total price, VAT, and discounted price.
+ * It also manages the amount paid by the customer and
+ * calculates the change to be returned.
+ */
 public class Payment {
 
     private AmountDTO totalPrice;

@@ -11,6 +11,10 @@ import java.util.Random;
 
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 
+/**
+ * This class represents a sale.
+ * It handles item registration, payment, and sale information.
+ */
 public class Sale {
 	private String saleId;
 
@@ -22,6 +26,13 @@ public class Sale {
 
 	private SaleDTO saleInfo;
 
+	/**
+	 * Constructs a new Sale object with a random generated sale ID.
+	 * Initializes the item register, payment system and sale period for the
+	 * transaction. The sale ID is a random 7-digit number generated using the
+	 * Random
+	 * class.
+	 */
 	public Sale() {
 		Random random = new Random();
 		this.saleId = random.nextInt(1000000, 9999999) + "";

@@ -4,6 +4,11 @@ import se.kth.iv1350.retailStore.view.View;
 import se.kth.iv1350.retailStore.controller.Controller;
 import se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler;
 
+/**
+ * The main class that initialices the Retail Store
+ * application.
+ * It startes the necessary components and starts the sample execution.
+ */
 public class Main {
 
 	/**

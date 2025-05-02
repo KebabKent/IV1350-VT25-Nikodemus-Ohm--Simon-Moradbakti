@@ -11,12 +11,21 @@ import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 
+/**
+ * Creates a new instance of the controller.
+ * Initializes the registry handler and a new cash register.
+ */
 public class Controller {
-    public RegistryHandler creator;
-    public CashRegister cashRegister;
+    private RegistryHandler creator;
+    private CashRegister cashRegister;
+    private Sale sale;
 
-    public Sale sale;
-
+    /**
+     * Creates a new instance of the controller.
+     * 
+     * @param creator The registry handler to be used for item registration and
+     *                discount fetching.
+     */
     public Controller(RegistryHandler creator) {
         this.creator = creator;
         this.cashRegister = new CashRegister();
@@ -40,6 +49,13 @@ public class Controller {
         return foundItem;
     }
 
+    /**
+     * This method retrieves the sale information if available.
+     * It checks if the sale object is not null to avoid errors.
+     * 
+     * @return SaleDTO containing sale information, or null if no sale information
+     *         is available.
+     */
     public SaleDTO getSaleInfo() {
         return sale.getSaleInfo();
     }

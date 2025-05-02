@@ -8,7 +8,13 @@ import se.kth.iv1350.retailStore.dto.SaleDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InventoryRegister {
+/**
+ * This class holds the inventory register ans is responsible for
+ * managing the items in the inventory.
+ * It simulates fetching items from a database and updating the inventory.
+ */
+class InventoryRegister {
+
 	private List<ItemDTO> fetchedItems;
 
 	/**

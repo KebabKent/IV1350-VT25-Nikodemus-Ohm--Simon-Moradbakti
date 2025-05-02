@@ -3,8 +3,13 @@ package se.kth.iv1350.retailStore.model;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
+/**
+ * Cash register keeps track of the current balance in the in store cash
+ * regiser. It can register the amount paid by the customer and the change
+ * given back.
+ * The cash register is initialized with a starting balance of 100000 units.
+ */
 public class CashRegister {
-
 	private AmountDTO balance;
 
 	/**

@@ -5,7 +5,17 @@ import se.kth.iv1350.retailStore.util.ItemListHandler;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
+/**
+ * This class is responsible for printing the receipt of a sale.
+ */
 public class RecieptPrinter {
+
+	/**
+	 * Creates a new instance of RecieptPrinter.
+	 * This instance does nothing.
+	 */
+	public RecieptPrinter() {
+	}
 
 	/**
 	 * Prints the receipt for a completed sale. The receipt includes:

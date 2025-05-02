@@ -1,5 +1,8 @@
 package se.kth.iv1350.retailStore.model;
 
+/**
+ * The Period class holds the time period of a sale.
+ */
 public class Period {
 
     private java.time.LocalTime saleTime;

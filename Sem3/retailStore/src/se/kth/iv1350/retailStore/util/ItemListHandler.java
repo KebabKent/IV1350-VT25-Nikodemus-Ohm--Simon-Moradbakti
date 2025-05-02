@@ -5,7 +5,20 @@ import se.kth.iv1350.retailStore.dto.ItemDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class has custom util methods for handling lists of ItemDTO objects.
+ * It has methods for searching for items in a list, printing items,
+ * and printing an entire list of items.
+ */
+
 public class ItemListHandler {
+
+    /**
+     * Creates a new instance of ItemListHandler.
+     * This instance does nothing.
+     */
+    public ItemListHandler() {
+    }
 
     /**
      * Searches for a specific ItemDTO in the provided list by comparing their item
