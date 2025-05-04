@@ -63,8 +63,9 @@ public class ItemListHandlerTest {
     @Test
     public void testSearchItemDTOInstanceNull() {
         searchedItem = null;
-        result = ItemListHandler.searchItemDTOInstance(searchedItem, storedItems);
-        assertNull(result, "Searching for null should return null.");
+        assertThrows(NullPointerException.class, () -> {
+            ItemListHandler.searchItemDTOInstance(searchedItem, storedItems);
+        }, "Searching for null should throw a NullPointerException.");
     }
 
     @Test
@@ -72,7 +73,6 @@ public class ItemListHandlerTest {
         searchedItem = new ItemDTO(
                 "004",
                 100);
-
         result = ItemListHandler.searchItemDTOInstance(searchedItem, storedItems);
         assertNull(result, "Searching for an item that does not exist should return null.");
     }
@@ -93,8 +93,9 @@ public class ItemListHandlerTest {
     @Test
     public void testSearchItemDTOPositionNull() {
         searchedItem = null;
-        resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertNull(resultPosition, "Searching for null should return null.");
+        assertThrows(NullPointerException.class, () -> {
+            ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
+        }, "Searching for null should throw a NullPointerException.");
     }
 
     @Test

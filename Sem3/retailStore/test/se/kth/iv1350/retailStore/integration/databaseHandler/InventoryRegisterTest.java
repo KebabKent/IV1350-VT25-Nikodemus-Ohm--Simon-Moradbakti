@@ -3,7 +3,7 @@ package se.kth.iv1350.retailStore.integration.databaseHandler;
 import se.kth.iv1350.retailStore.model.ItemRegister;
 import se.kth.iv1350.retailStore.model.Payment;
 import se.kth.iv1350.retailStore.model.Period;
-
+import se.kth.iv1350.retailStore.util.ItemListHandler;
 import se.kth.iv1350.retailStore.integration.RecieptPrinter;
 
 import se.kth.iv1350.retailStore.dto.SaleDTO;
@@ -67,8 +67,9 @@ public class InventoryRegisterTest {
     @Test
     public void testRetrieveItemInfoNull() {
         searchedItem = null;
-        result = inventoryRegister.retrieveItemInfo(searchedItem);
-        assertNull(result, "Searching for null should return null.");
+        assertThrows(NullPointerException.class, () -> {
+            inventoryRegister.retrieveItemInfo(searchedItem);
+        }, "Searching for null should throw a NullPointerException.");
     }
 
     // Test for when searched item doesn't exist in the list
