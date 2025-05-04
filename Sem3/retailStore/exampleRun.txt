@@ -1,0 +1,133 @@
+Welcome to the Retail Store!
+View: New Sale.
+
+View: Registering item 1
+       ID: 001
+       Name: Apple
+       Quantity: 1
+       Price: 5.0
+       VAT: 0.12
+       Price for quantity: 5.0
+Total price: 5.0
+Discounted price: 5.0
+Discounted percentage: 0.0
+
+View: Registering item 2
+       ID: 003
+       Name: Bread
+       Quantity: 1
+       Price: 25.0
+       VAT: 0.15
+       Price for quantity: 25.0
+Total price: 30.0
+Discounted price: 30.0
+Discounted percentage: 0.0
+
+View: Registering item 3
+Item not found in the inventory.
+
+View: Registering item 4
+       ID: 001
+       Name: Apple
+       Quantity: 101
+       Price: 5.0
+       VAT: 0.12
+       Price for quantity: 505.0
+Total price: 530.0
+Discounted price: 530.0
+Discounted percentage: 0.0
+
+View: Registering item 5
+       ID: 002
+       Name: Milk
+       Quantity: 1337
+       Price: 15.0
+       VAT: 0.12
+       Price for quantity: 20055.0
+Total price: 20585.0
+Discounted price: 20585.0
+Discounted percentage: 0.0
+
+View: Ending sale
+Total price: 20585.0
+Discounted price: 20585.0
+Discounted percentage: 0.0
+
+View: Fetching discount for customer ID 123
+Total price: 20585.0
+Discounted price: 18526.5
+Discounted percentage: 10.0
+
+View: Processing payment
+*************Cash register*************
+Amount in (paid): 25000.0
+Amount out (change): 6473.5
+Current balance: 100000.0
+New balance: 118526.5
+
+*************Accounting history*************
+Sale ID: 8491436
+
+*************Inventory register*************
+    Item: 0
+       ID: 001
+       Name: Apple
+       Quantity: 899
+       Price: 5.0
+       VAT: 0.12
+       Price for quantity: 4495.0
+
+    Item: 1
+       ID: 002
+       Name: Milk
+       Quantity: 663
+       Price: 15.0
+       VAT: 0.12
+       Price for quantity: 9945.0
+
+    Item: 2
+       ID: 003
+       Name: Bread
+       Quantity: 4999
+       Price: 25.0
+       VAT: 0.15
+       Price for quantity: 124975.0
+
+********** Receipt **********
+Time of sale: 18:10:23.497533115
+Time of sale end: 18:10:23.527012136
+
+    Item: 0
+       ID: 001
+       Name: Apple
+       Quantity: 101
+       Price: 5.0
+       VAT: 0.12
+       Price for quantity: 505.0
+
+    Item: 1
+       ID: 003
+       Name: Bread
+       Quantity: 1
+       Price: 25.0
+       VAT: 0.15
+       Price for quantity: 25.0
+
+    Item: 2
+       ID: 002
+       Name: Milk
+       Quantity: 1337
+       Price: 15.0
+       VAT: 0.12
+       Price for quantity: 20055.0
+
+
+Total price: 20585.0
+Total VAT: 2470.95
+Total VAT percentage: 0.12
+Discounted price: 18526.5
+Discounted percentage: 10.0
+
+Amount paid: 25000.0
+Change: 6473.5
+Change as seen in view: 6473.5
