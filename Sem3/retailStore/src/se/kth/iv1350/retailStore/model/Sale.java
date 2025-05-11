@@ -51,17 +51,25 @@ public class Sale {
 	 * @return The registered item.
 	 */
 	public ItemDTO registerItem(ItemDTO searchedItem, RegistryHandler creator) {
-		Integer foundItemPosition = itemRegister.findItem(searchedItem);
-		if (foundItemPosition != null) {
-			return itemRegister.updateItemQuantity(foundItemPosition, searchedItem.getItemQuantity());
+		ItemDTO itemToBeReturned;
+		ItemDTO itemToBeCopied;
+
+		ItemDTO foundItem = itemRegister.findItem(searchedItem);
+		if (foundItem != null) {
+			itemToBeCopied = itemRegister.updateItemQuantity(foundItem, searchedItem.getItemQuantity());
+			itemToBeReturned = new ItemDTO(itemToBeCopied);
+			return itemToBeReturned;
 		}
 
-		ItemDTO foundItem = creator.retrieveItemInfo(searchedItem);
+		foundItem = creator.retrieveItemInfo(searchedItem);
 		if (foundItem == null) {
 			return null;
 		}
 
-		return this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
+		itemToBeCopied = this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
+		itemToBeReturned = new ItemDTO(itemToBeCopied);
+
+		return itemToBeReturned;
 	}
 
 	/**
@@ -103,7 +111,9 @@ public class Sale {
 		this.payment.registerAmountPaid(amount);
 		this.payment.calculateChange();
 
-		this.saleInfo = new SaleDTO(this.saleInfo, this.payment);
+		Payment paymentCopy = new Payment(this.payment);
+
+		this.saleInfo = new SaleDTO(this.saleInfo, paymentCopy);
 
 		return this.saleInfo;
 	}
@@ -116,11 +126,16 @@ public class Sale {
 	 *         final details.
 	 */
 	public SaleDTO getSaleDTO() {
-		this.payment.calculateTotalPrice(itemRegister.getItemList());
+		List<ItemDTO> itemListCopy = this.itemRegister.getItemListCopy();
+
+		this.payment.calculateTotalPrice(itemListCopy);
 		this.payment.calculateDiscountedPrice();
 		this.salePeriod.setEndTime();
 
-		this.saleInfo = new SaleDTO(saleId, this.itemRegister, this.salePeriod, this.payment);
+		Period salePeriodCopy = new Period(this.salePeriod);
+		Payment paymentCopy = new Payment(this.payment);
+
+		this.saleInfo = new SaleDTO(saleId, itemListCopy, salePeriodCopy, paymentCopy);
 
 		return this.saleInfo;
 	}

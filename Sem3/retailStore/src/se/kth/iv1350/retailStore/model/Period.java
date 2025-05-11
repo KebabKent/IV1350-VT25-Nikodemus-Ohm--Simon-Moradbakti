@@ -17,6 +17,16 @@ public class Period {
     }
 
     /**
+     * Copies the sale time and end time from another Period object.
+     * 
+     * @param period The period to be copied.
+     */
+    public Period(Period period) {
+        this.saleTime = period.getSaleTime();
+        this.saleEndTime = period.getSaleEndTime();
+    }
+
+    /**
      * Sets the sale end time to the current time.
      */
     public void setEndTime() {

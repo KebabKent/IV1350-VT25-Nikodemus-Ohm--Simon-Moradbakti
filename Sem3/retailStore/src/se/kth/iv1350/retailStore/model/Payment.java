@@ -18,7 +18,7 @@ public class Payment {
     private AmountDTO totalVAT;
     private AmountDTO totalVATPercentage;
     private AmountDTO discountedPrice;
-    private float discountPercentage;
+    private AmountDTO discountPercentage;
 
     private AmountDTO amountPaid;
     private AmountDTO change;
@@ -33,9 +33,26 @@ public class Payment {
         this.totalVAT = new AmountDTO(0);
         this.totalVATPercentage = new AmountDTO(0);
         this.discountedPrice = new AmountDTO(0);
-        this.discountPercentage = 0;
+        this.discountPercentage = new AmountDTO(0);
         this.amountPaid = new AmountDTO(0);
         this.change = new AmountDTO(0);
+    }
+
+    /**
+     * Copy constructor that creates a new Payment object based on an existing one.
+     * This constructor is used to create a copy of the payment object.
+     * 
+     * @param payment The Payment object to copy.
+     */
+    public Payment(Payment payment) {
+        this.totalPrice = new AmountDTO(payment.returnTotalPrice());
+        this.totalVAT = new AmountDTO(payment.returnTotalVAT());
+        this.totalVATPercentage = new AmountDTO(payment.returnTotalVATPercentage());
+        this.discountedPrice = new AmountDTO(payment.returnDiscountedPrice());
+        this.discountPercentage = new AmountDTO(payment.returnDiscountedPercentage());
+
+        this.amountPaid = new AmountDTO(payment.getAmountPaid().getAmount());
+        this.change = new AmountDTO(payment.getChange().getAmount());
     }
 
     /**
@@ -100,7 +117,7 @@ public class Payment {
      * @param discount The discount percentage as a float.
      */
     public void setDiscount(float discount) {
-        this.discountPercentage = discount;
+        this.discountPercentage = new AmountDTO(discount);
     }
 
     /**
@@ -111,7 +128,7 @@ public class Payment {
      */
     public AmountDTO calculateDiscountedPrice() {
         this.discountedPrice = new AmountDTO(
-                totalPrice.getAmount() * (1 - discountPercentage / 100));
+                totalPrice.getAmount() * (1 - discountPercentage.getAmount() / 100));
         return discountedPrice;
     }
 
@@ -130,7 +147,7 @@ public class Payment {
      * @return The discount percentage as a float.
      */
     public float returnDiscountedPercentage() {
-        return discountPercentage;
+        return discountPercentage.getAmount();
     }
 
     /**

@@ -17,9 +17,9 @@ public class ItemListHandlerTest {
     private List<ItemDTO> storedItems;
     private ItemDTO searchedItem;
     private ItemDTO expectedItem;
-    private Integer expectedPosition;
+    // private Integer expectedPosition;
     private ItemDTO result;
-    private Integer resultPosition;
+    // private Integer resultPosition;
 
     @BeforeEach
     public void setUp() {
@@ -89,37 +89,41 @@ public class ItemListHandlerTest {
         assertEquals(expectedItem, result, "Searching for an existing item should return the correct item.");
     }
 
-    // Test for searchItemDTOPosition method
-    @Test
-    public void testSearchItemDTOPositionNull() {
-        searchedItem = null;
-        assertThrows(NullPointerException.class, () -> {
-            ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        }, "Searching for null should throw a NullPointerException.");
-    }
+    // Test for searchItemDTOPosition method. This method was deemed unnecessary
+    // and was un-implemented in the ItemListHandler class.
+    // @Test
+    // public void testSearchItemDTOPositionNull() {
+    // searchedItem = null;
+    // assertThrows(NullPointerException.class, () -> {
+    // ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
+    // }, "Searching for null should throw a NullPointerException.");
+    // }
 
-    @Test
-    public void testSearchItemDTOPositionNotExist() {
-        searchedItem = new ItemDTO(
-                "004",
-                100);
+    // @Test
+    // public void testSearchItemDTOPositionNotExist() {
+    // searchedItem = new ItemDTO(
+    // "004",
+    // 100);
 
-        resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertNull(resultPosition, "Searching for an item that does not exist should return null.");
-    }
+    // resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem,
+    // storedItems);
+    // assertNull(resultPosition, "Searching for an item that does not exist should
+    // return null.");
+    // }
 
-    @Test
-    public void testSearchItemDTOPositionExists() {
-        searchedItem = new ItemDTO(
-                "003",
-                5000);
+    // @Test
+    // public void testSearchItemDTOPositionExists() {
+    // searchedItem = new ItemDTO(
+    // "003",
+    // 5000);
 
-        expectedPosition = 2;
+    // expectedPosition = 2;
 
-        resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem, storedItems);
-        assertEquals(expectedPosition, resultPosition,
-                "Searching for an existing item should return the items index in the list.");
-    }
+    // resultPosition = ItemListHandler.searchItemDTOPosition(searchedItem,
+    // storedItems);
+    // assertEquals(expectedPosition, resultPosition,
+    // "Searching for an existing item should return the items index in the list.");
+    // }
 
     @Test
     public void testPrintItemListNull() {

@@ -79,6 +79,21 @@ public class ItemDTO {
     }
 
     /**
+     * Creates a new copy of an existing ItemDTO object.
+     * 
+     * @param itemToCopy The object to be copied.
+     */
+    public ItemDTO(
+            ItemDTO itemToCopy) {
+        this.itemId = itemToCopy.getItemId();
+        this.itemName = itemToCopy.getItemName();
+        this.itemPrice = itemToCopy.getItemPrice();
+        this.itemVAT = itemToCopy.getItemVAT();
+        this.itemDescription = itemToCopy.getItemDescription();
+        this.quantity = itemToCopy.getItemQuantity();
+    }
+
+    /**
      * Retrieves the item's ID.
      * 
      * @return The ID as a string.

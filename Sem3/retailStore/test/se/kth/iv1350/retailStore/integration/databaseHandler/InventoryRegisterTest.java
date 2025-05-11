@@ -100,10 +100,10 @@ public class InventoryRegisterTest {
     @Test
     public void testUpdateRegisterWithExistingQuantities() {
         itemRegister = new ItemRegister();
-        itemRegister.addItem(fetchedItems.get(0), 5);
+        ItemDTO item = itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, 5); // updating quantity of the first item
+        itemRegister.updateItemQuantity(item, 5); // updating quantity of the first item
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
@@ -118,10 +118,10 @@ public class InventoryRegisterTest {
     @Test
     public void testUpdateRegisterWithNonExistingQuantities() {
         itemRegister = new ItemRegister();
-        itemRegister.addItem(fetchedItems.get(0), 5);
+        ItemDTO item = itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, -10); // negative quantity shouldn't be allowed
+        itemRegister.updateItemQuantity(item, -10); // negative quantity shouldn't be allowed
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
@@ -135,10 +135,10 @@ public class InventoryRegisterTest {
     @Test
     public void testUpdateRegisterWithQuantitiesAboveAvailableQuantity() {
         itemRegister = new ItemRegister();
-        itemRegister.addItem(fetchedItems.get(0), 5);
+        ItemDTO item = itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
-        itemRegister.updateItemQuantity(0, 3000); // too many items
+        itemRegister.updateItemQuantity(item, 3000); // too many items
         registeredItems = itemRegister.getItemList();
 
         setUpSale();
@@ -160,11 +160,11 @@ public class InventoryRegisterTest {
                 0);
 
         itemRegister = new ItemRegister();
-        itemRegister.addItem(fetchedItems.get(0), 5);
+        ItemDTO item = itemRegister.addItem(fetchedItems.get(0), 5);
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.addItem(nonExistingItem, 10); // add non-existent item
-        itemRegister.updateItemQuantity(0, 5);
+        itemRegister.updateItemQuantity(item, 5);
         registeredItems = itemRegister.getItemList();
 
         setUpSale();

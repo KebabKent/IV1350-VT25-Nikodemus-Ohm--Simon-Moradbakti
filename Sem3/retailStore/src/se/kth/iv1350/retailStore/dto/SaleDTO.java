@@ -39,15 +39,15 @@ public class SaleDTO {
 	/**
 	 * Creates a SaleDTO object that holds all relevant information about a sale.
 	 *
-	 * @param saleId       Unique ID for this sale.
-	 * @param itemRegister Contains the list of all sold items.
-	 * @param salePeriod   Includes the time when the sale started and ended.
-	 * @param payment      Contains calculated price and VAT information.
+	 * @param saleId     Unique ID for this sale.
+	 * @param itemList   Is list of all sold items.
+	 * @param salePeriod Includes the time when the sale started and ended.
+	 * @param payment    Contains calculated price and VAT information.
 	 */
-	public SaleDTO(String saleId, ItemRegister itemRegister, Period salePeriod, Payment payment) {
+	public SaleDTO(String saleId, List<ItemDTO> itemList, Period salePeriod, Payment payment) {
 		this.saleID = saleId;
 
-		this.itemList = itemRegister.getItemList();
+		this.itemList = itemList;
 
 		this.saleTime = salePeriod.getSaleTime();
 		this.saleEndTime = salePeriod.getSaleEndTime();

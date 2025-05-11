@@ -26,32 +26,26 @@ public class ItemRegister {
     }
 
     /**
-     * Searches for an item in the item list and returns its position in the list.
+     * Searches for an item in the item list and returns its pointer in the list.
      * 
      * @param searchedItem The item to search for in the register.
-     * @return The position of the item in the list.
+     * @return The pointer of the item in the list.
      */
-    public Integer findItem(ItemDTO searchedItem) {
-        return ItemListHandler.searchItemDTOPosition(searchedItem, this.itemList);
+    public ItemDTO findItem(ItemDTO searchedItem) {
+        return ItemListHandler.searchItemDTOInstance(searchedItem, this.itemList);
     }
 
     /**
-     * Updates the quantity of an item in the item list based on its position.
+     * Updates the quantity of an item in the item list based on its pointer.
      * A new itemDTO is created with the updated quantity, and the item list is
      * modified according to it.
      * 
-     * @param foundItemPosition The position of the item in the list to update.
-     * @param quantity          The quantity to add to the item.
+     * @param foundItem The pointer of the item in the list to update.
+     * @param quantity  The quantity to add to the item.
      * @return The updated itemDTO.
      */
-    public ItemDTO updateItemQuantity(Integer foundItemPosition, int quantity) {
-
-        ItemDTO foundItem = this.itemList.get(foundItemPosition);
-
+    public ItemDTO updateItemQuantity(ItemDTO foundItem, int quantity) {
         foundItem = new ItemDTO(foundItem, foundItem.getItemQuantity() + quantity);
-
-        this.itemList.set(foundItemPosition, foundItem);
-
         return foundItem;
     }
 
@@ -69,11 +63,17 @@ public class ItemRegister {
     }
 
     /**
-     * Returns the current list of items in the register.
+     * Returns a copy of the current list of items in the register,
+     * with new ItemDTO instances of the items.
      * 
-     * @return The list of item DTOs in the register.
+     * @return The copy of the list of item DTOs in the register.
      */
-    public List<ItemDTO> getItemList() {
-        return itemList;
+    public List<ItemDTO> getItemListCopy() {
+        List<ItemDTO> itemListCopy = new ArrayList<>();
+        for (ItemDTO item : this.itemList) {
+            itemListCopy.add(new ItemDTO(item));
+        }
+
+        return itemListCopy;
     }
 }
