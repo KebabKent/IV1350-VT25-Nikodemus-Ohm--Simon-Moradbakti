@@ -13,6 +13,8 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
+import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
+
 /**
  * The View displays information to the user and interacts with the Controller.
  * It registers items, applies discounts, and processeces payments.
@@ -69,6 +71,16 @@ public class View {
                                 1337);
                 itemList.add(searchedItem);
 
+                searchedItem = new ItemDTO(
+                                "007",
+                                1337);
+                itemList.add(searchedItem);
+
+                searchedItem = new ItemDTO(
+                                "007",
+                                50);
+                itemList.add(searchedItem);
+
                 ItemDTO foundItem;
                 SaleDTO saleInfo;
 
@@ -76,14 +88,17 @@ public class View {
                 while (true) {
                         searchedItem = itemList.get(i);
                         System.out.println("View: Registering item " + (i + 1));
-                        foundItem = controller.registerItem(searchedItem);
-                        if (foundItem == null) {
-                                System.out.println("Item not found in the inventory.");
-                        } else {
+
+                        try {
+                                foundItem = controller.registerItem(searchedItem);
+
                                 saleInfo = controller.getSaleInfo();
                                 ItemListHandler.printItem(foundItem);
                                 printPaymentInfo(saleInfo);
+                        } catch (OperationFailedException OprtionFldExc) {
+                                ErrorMessageHandler.showErrorMsg(OprtionFldExc.getMessage() + ". Try again.");
                         }
+
                         System.out.println();
 
                         i++;

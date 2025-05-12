@@ -26,4 +26,10 @@ public class Main {
 
 		view.sampleExecution();
 	}
+
+	/**
+	 * Creates a new instance of the Main class.
+	 */
+	public Main() {
+	}
 }

@@ -11,6 +11,11 @@ import java.util.Random;
 
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 
+import se.kth.iv1350.retailStore.exceptions.ItemNotFoundException;
+import se.kth.iv1350.retailStore.exceptions.ItemHandlingException;
+import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
+import se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException;
+
 /**
  * This class represents a sale.
  * It handles item registration, payment, and sale information.
@@ -49,27 +54,37 @@ public class Sale {
 	 * @param searchedItem The item to register.
 	 * @param creator      The registry handler used to retrieve item info.
 	 * @return The registered item.
+	 * @throws ItemHandlingException        If the item is not found in the
+	 *                                      inventory.
+	 * @throws DatabaseUnreachableException If the database is unreachable.
 	 */
-	public ItemDTO registerItem(ItemDTO searchedItem, RegistryHandler creator) {
+	public ItemDTO registerItem(ItemDTO searchedItem, RegistryHandler creator)
+			throws ItemHandlingException, DatabaseUnreachableException {
 		ItemDTO itemToBeReturned;
 		ItemDTO itemToBeCopied;
+		ItemDTO foundItem;
 
-		ItemDTO foundItem = itemRegister.findItem(searchedItem);
+		foundItem = itemRegister.findItem(searchedItem);
+
 		if (foundItem != null) {
 			itemToBeCopied = itemRegister.updateItemQuantity(foundItem, searchedItem.getItemQuantity());
 			itemToBeReturned = new ItemDTO(itemToBeCopied);
 			return itemToBeReturned;
 		}
 
-		foundItem = creator.retrieveItemInfo(searchedItem);
-		if (foundItem == null) {
-			return null;
+		try {
+			foundItem = creator.retrieveItemInfo(searchedItem);
+
+			itemToBeCopied = this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
+			itemToBeReturned = new ItemDTO(itemToBeCopied);
+
+			return itemToBeReturned;
+		} catch (ItemNotFoundException ItmNtFndExc) {
+			throw new ItemHandlingException(ItmNtFndExc.getItemThatCouldNotBeFound(), ItmNtFndExc);
+		} catch (InventoryDatabaseException DBUnrExc) {
+			throw new DatabaseUnreachableException("registering item", DBUnrExc);
 		}
 
-		itemToBeCopied = this.itemRegister.addItem(foundItem, searchedItem.getItemQuantity());
-		itemToBeReturned = new ItemDTO(itemToBeCopied);
-
-		return itemToBeReturned;
 	}
 
 	/**

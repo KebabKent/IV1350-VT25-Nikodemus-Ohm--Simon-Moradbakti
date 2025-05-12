@@ -9,7 +9,14 @@ import se.kth.iv1350.retailStore.model.Payment;
 
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
+
 import se.kth.iv1350.retailStore.dto.AmountDTO;
+
+import se.kth.iv1350.retailStore.exceptions.ItemHandlingException;
+import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
+import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
+
+import se.kth.iv1350.retailStore.util.FileLogger;
 
 /**
  * Creates a new instance of the controller.
@@ -19,6 +26,7 @@ public class Controller {
     private RegistryHandler creator;
     private CashRegister cashRegister;
     private Sale sale;
+    private FileLogger logger;
 
     /**
      * Creates a new instance of the controller.
@@ -29,6 +37,7 @@ public class Controller {
     public Controller(RegistryHandler creator) {
         this.creator = creator;
         this.cashRegister = new CashRegister();
+        this.logger = new FileLogger();
     }
 
     /**
@@ -43,10 +52,23 @@ public class Controller {
      * 
      * @param searchedItem The item to be registered.
      * @return The found item.
+     * @throws OperationFailedException If the item is not found or if the database
+     *                                  is unreachable.
      */
-    public ItemDTO registerItem(ItemDTO searchedItem) {
-        ItemDTO foundItem = sale.registerItem(searchedItem, creator);
-        return foundItem;
+    public ItemDTO registerItem(ItemDTO searchedItem) throws OperationFailedException {
+        try {
+            ItemDTO foundItem = sale.registerItem(searchedItem, creator);
+            return foundItem;
+        } catch (ItemHandlingException ItmHandlExc) {
+            throw new OperationFailedException("Item not found", ItmHandlExc);
+        } catch (DatabaseUnreachableException DbUnreachExc) {
+            logger.log(DbUnreachExc);
+            ;
+            throw new OperationFailedException("Database unreachable", DbUnreachExc);
+        } catch (Exception e) {
+            logger.log(e);
+            throw new OperationFailedException("Unexpected error", e);
+        }
     }
 
     /**

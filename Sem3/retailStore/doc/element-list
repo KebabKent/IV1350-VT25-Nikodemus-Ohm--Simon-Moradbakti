@@ -1,5 +1,6 @@
 se.kth.iv1350.retailStore.controller
 se.kth.iv1350.retailStore.dto
+se.kth.iv1350.retailStore.exceptions
 se.kth.iv1350.retailStore.integration
 se.kth.iv1350.retailStore.integration.databaseHandler
 se.kth.iv1350.retailStore.model

@@ -4,6 +4,9 @@ import se.kth.iv1350.retailStore.dto.SaleDTO;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 
+import se.kth.iv1350.retailStore.exceptions.ItemNotFoundException;
+import se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException;
+
 /**
  * This class is a central point for managing the other database
  * relatedregisters.
@@ -44,8 +47,10 @@ public class RegistryHandler {
 	 *
 	 * @param searchedItem The item to be searched in the inventory.
 	 * @return The item found in the inventory, or null if not found.
+	 * @throws ItemNotFoundException      If the item is not found in the inventory.
+	 * @throws InventoryDatabaseException If there is an issue with the inventory
 	 */
-	public ItemDTO retrieveItemInfo(ItemDTO searchedItem) {
+	public ItemDTO retrieveItemInfo(ItemDTO searchedItem) throws ItemNotFoundException, InventoryDatabaseException {
 
 		ItemDTO foundItem = inventoryRegister.retrieveItemInfo(searchedItem);
 

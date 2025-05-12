@@ -8,6 +8,9 @@ import se.kth.iv1350.retailStore.dto.SaleDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException;
+import se.kth.iv1350.retailStore.exceptions.ItemNotFoundException;
+
 /**
  * This class holds the inventory register ans is responsible for
  * managing the items in the inventory.
@@ -69,9 +72,20 @@ class InventoryRegister {
 	 * 
 	 * @param searchedItem The item being searched for.
 	 * @return The item from the inventory that matches the search.
+	 * @throws ItemNotFoundException      If the item is not found in the inventory.
+	 * @throws InventoryDatabaseException If there is an issue with the inventory
 	 */
-	ItemDTO retrieveItemInfo(ItemDTO searchedItem) {
-		return ItemListHandler.searchItemDTOInstance(searchedItem, this.fetchedItems);
+	ItemDTO retrieveItemInfo(ItemDTO searchedItem) throws ItemNotFoundException, InventoryDatabaseException {
+		if (searchedItem.getItemId().equals("007")) { // Bond reference
+			throw new InventoryDatabaseException("retrieving item info");
+		}
+
+		ItemDTO foundItem = ItemListHandler.searchItemDTOInstance(searchedItem, this.fetchedItems);
+		if (foundItem == null) {
+			throw new ItemNotFoundException(searchedItem);
+		}
+
+		return foundItem;
 	}
 
 	/**

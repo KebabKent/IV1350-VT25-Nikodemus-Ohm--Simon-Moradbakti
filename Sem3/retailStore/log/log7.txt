@@ -1,0 +1,12 @@
+May 12, 2025, 6:10:05 PM, Exception was thrown: Database unreachable when: registering item
+se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException: Database unreachable when: registering item
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:85)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:60)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:93)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:27)
+May 12, 2025, 6:10:05 PM, Exception was thrown: Database unreachable when: registering item
+se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException: Database unreachable when: registering item
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:85)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:60)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:93)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:27)

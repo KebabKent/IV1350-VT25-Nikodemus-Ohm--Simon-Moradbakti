@@ -26,7 +26,7 @@ public class ItemListHandler {
      * 
      * @param searchedItem The item to search for.
      * @param itemList     The list of items to search through.
-     * @return The ItemDTO if found, null if not found.
+     * @return The ItemDTO if found.
      */
     public static ItemDTO searchItemDTOInstance(ItemDTO searchedItem, List<ItemDTO> itemList) {
         for (ItemDTO registeredItem : itemList) {
@@ -34,6 +34,7 @@ public class ItemListHandler {
                 return registeredItem;
             }
         }
+
         return null;
     }
 
