@@ -11,12 +11,19 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+
+import se.kth.iv1350.retailStore.exceptions.ItemNotFoundException;
+import se.kth.iv1350.retailStore.exceptions.ItemHandlingException;
+import se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException;
+import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
+import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
 
 public class InventoryRegisterTest {
     private InventoryRegister inventoryRegister;
@@ -43,6 +50,9 @@ public class InventoryRegisterTest {
         salePeriod.setEndTime();
 
         payment = new Payment();
+
+        List<ItemDTO> itemListCopy = this.itemRegister.getItemListCopy();
+
         payment.calculateTotalPrice(registeredItems);
         payment.setDiscount(10);
         payment.calculateDiscountedPrice();
@@ -51,7 +61,10 @@ public class InventoryRegisterTest {
         payment.registerAmountPaid(amountPaid);
         payment.calculateChange();
 
-        sale = new SaleDTO("100", itemRegister, salePeriod, payment);
+        Period salePeriodCopy = new Period(this.salePeriod);
+        Payment paymentCopy = new Payment(this.payment);
+
+        sale = new SaleDTO("100", itemListCopy, salePeriodCopy, paymentCopy);
     }
 
     @AfterEach
@@ -67,9 +80,17 @@ public class InventoryRegisterTest {
     @Test
     public void testRetrieveItemInfoNull() {
         searchedItem = null;
-        assertThrows(NullPointerException.class, () -> {
-            inventoryRegister.retrieveItemInfo(searchedItem);
-        }, "Searching for null should throw a NullPointerException.");
+
+        try {
+            result = inventoryRegister.retrieveItemInfo(searchedItem);
+            fail("Expected NullPointerException was not thrown.");
+        } catch (ItemNotFoundException e) {
+            fail("Expected NullPointerException was not thrown.");
+        } catch (InventoryDatabaseException e) {
+            fail("Expected NullPointerException was not thrown.");
+        } catch (NullPointerException e) {
+
+        }
     }
 
     // Test for when searched item doesn't exist in the list
@@ -79,8 +100,19 @@ public class InventoryRegisterTest {
                 "004", // non-existing ID
                 100);
 
-        result = inventoryRegister.retrieveItemInfo(searchedItem);
-        assertNull(result, "Searching for an item that does not exist should return null.");
+        try {
+            result = inventoryRegister.retrieveItemInfo(searchedItem);
+            fail("Expected ItemNotFoundException was not thrown.");
+        } catch (ItemNotFoundException e) {
+            assertTrue(e.getMessage().contains(searchedItem.getItemId()),
+                    "ItemNotFoundException message should contain the searched item ID.");
+
+            assertTrue(e.getItemThatCouldNotBeFound().getItemId().equals(searchedItem.getItemId()),
+                    "ItemNotFoundException should contain the searched item.");
+
+        } catch (Exception e) {
+            fail("Expected ItemNotFoundException was not thrown.");
+        }
     }
 
     // Test for when searched item exists in the list (they must exist)
@@ -92,8 +124,30 @@ public class InventoryRegisterTest {
 
         expectedItem = fetchedItems.get(2);
 
-        result = inventoryRegister.retrieveItemInfo(searchedItem);
-        assertEquals(expectedItem, result, "Searching for an existing item should return the correct item.");
+        try {
+            result = inventoryRegister.retrieveItemInfo(searchedItem);
+            assertEquals(expectedItem, result, "Searching for an existing item should return the correct item.");
+        } catch (Exception e) {
+            fail("Expected correct item not ItemNotFoundException.");
+        }
+    }
+
+    // Test for when searched item exists in the list (they must exist)
+    @Test
+    public void testRetrieveItemInfoExpectedDatabaseException() {
+        searchedItem = new ItemDTO(
+                "007", // existing item ID
+                5000);
+
+        try {
+            result = inventoryRegister.retrieveItemInfo(searchedItem);
+            fail("Expected correct item not InventoryDatabaseException.");
+        } catch (InventoryDatabaseException e) {
+            assertTrue(e.getMessage().contains("retrieving item info"),
+                    "InventoryDatabaseException message should contain describing text.");
+        } catch (Exception e) {
+            fail("Expected correct item not InventoryDatabaseException.");
+        }
     }
 
     // Test for updating register with existing quantities
@@ -104,13 +158,17 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, 5); // updating quantity of the first item
-        registeredItems = itemRegister.getItemList();
+        registeredItems = itemRegister.getItemListCopy();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
 
-        ItemDTO updatedItem = inventoryRegister.retrieveItemInfo(fetchedItems.get(0));
-        assertEquals(1000 - 10, updatedItem.getItemQuantity(), "The item quantity should be updated correctly.");
+        try {
+            ItemDTO updatedItem = inventoryRegister.retrieveItemInfo(fetchedItems.get(0));
+            assertEquals(1000 - 10, updatedItem.getItemQuantity(), "The item quantity should be updated correctly.");
+        } catch (Exception e) {
+            fail("Expected returned correct item.");
+        }
     }
 
     // Test for updating register with non-existing quantities (negative values,
@@ -122,7 +180,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, -10); // negative quantity shouldn't be allowed
-        registeredItems = itemRegister.getItemList();
+        registeredItems = itemRegister.getItemListCopy();
 
         setUpSale();
 
@@ -139,7 +197,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, 3000); // too many items
-        registeredItems = itemRegister.getItemList();
+        registeredItems = itemRegister.getItemListCopy();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
@@ -165,14 +223,22 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.addItem(nonExistingItem, 10); // add non-existent item
         itemRegister.updateItemQuantity(item, 5);
-        registeredItems = itemRegister.getItemList();
+        registeredItems = itemRegister.getItemListCopy();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
 
-        expectedItem = null;
-        result = inventoryRegister.retrieveItemInfo(nonExistingItem);
-        assertEquals(expectedItem, result, "Trying to update non-existent item should do nothing.");
+        try {
+            inventoryRegister.retrieveItemInfo(nonExistingItem);
+        } catch (ItemNotFoundException e) {
+            assertTrue(e.getMessage().contains(nonExistingItem.getItemId()),
+                    "ItemNotFoundException message should contain the searched item ID.");
+
+            assertTrue(e.getItemThatCouldNotBeFound().getItemId().equals(nonExistingItem.getItemId()),
+                    "ItemNotFoundException should contain the searched item.");
+        } catch (Exception e) {
+            fail("Expected ItemNotFoundException.");
+        }
     }
 
 }

@@ -12,8 +12,11 @@ import se.kth.iv1350.retailStore.model.ItemRegister;
 import se.kth.iv1350.retailStore.dto.AmountDTO;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
-
+import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
+import se.kth.iv1350.retailStore.exceptions.ItemHandlingException;
 import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
+
+import se.kth.iv1350.retailStore.util.FileLogger;
 
 /**
  * The View displays information to the user and interacts with the Controller.
@@ -22,6 +25,8 @@ import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
 public class View {
 
         private Controller controller;
+
+        private FileLogger logger;
 
         /**
          * Constructs a new View object with the specified controller.
@@ -32,8 +37,9 @@ public class View {
          * @param controller The controller that manages the interaction with the model
          *                   and controls the flow of data.
          */
-        public View(Controller controller) {
+        public View(Controller controller, FileLogger logger) {
                 this.controller = controller;
+                this.logger = logger;
         }
 
         /**
@@ -81,6 +87,9 @@ public class View {
                                 50);
                 itemList.add(searchedItem);
 
+                searchedItem = null;
+                itemList.add(searchedItem);
+
                 ItemDTO foundItem;
                 SaleDTO saleInfo;
 
@@ -95,8 +104,16 @@ public class View {
                                 saleInfo = controller.getSaleInfo();
                                 ItemListHandler.printItem(foundItem);
                                 printPaymentInfo(saleInfo);
-                        } catch (OperationFailedException OprtionFldExc) {
-                                ErrorMessageHandler.showErrorMsg(OprtionFldExc.getMessage() + ". Try again.");
+                        } catch (ItemHandlingException ItmHandlExc) {
+                                ErrorMessageHandler.showErrorMsg(
+                                                "Item could not be registered. Please try again.");
+                        } catch (DatabaseUnreachableException DbUnreachExc) {
+                                ErrorMessageHandler.showErrorMsg(
+                                                "Database could not be connected. Please try again later.");
+                        } catch (Exception exc) {
+                                logger.log(exc);
+                                ErrorMessageHandler.showErrorMsg(
+                                                "Unexpected error, something went wrong. Please try again.");
                         }
 
                         System.out.println();

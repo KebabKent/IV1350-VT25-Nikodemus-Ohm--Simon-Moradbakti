@@ -4,6 +4,8 @@ import se.kth.iv1350.retailStore.view.View;
 import se.kth.iv1350.retailStore.controller.Controller;
 import se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler;
 
+import se.kth.iv1350.retailStore.util.FileLogger;
+
 /**
  * The main class that initialices the Retail Store
  * application.
@@ -21,8 +23,10 @@ public class Main {
 		System.out.println("Welcome to the Retail Store!");
 
 		RegistryHandler creator = new RegistryHandler();
-		Controller controller = new Controller(creator);
-		View view = new View(controller);
+		FileLogger logger = new FileLogger();
+		Controller controller = new Controller(creator, logger);
+
+		View view = new View(controller, logger);
 
 		view.sampleExecution();
 	}

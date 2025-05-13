@@ -11,6 +11,12 @@ import java.time.format.FormatStyle;
 public class ErrorMessageHandler {
 
     /**
+     * Empty constructor.
+     */
+    public ErrorMessageHandler() {
+    }
+
+    /**
      * Displays the specified error message.
      *
      * @param msg The error message.

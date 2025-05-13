@@ -34,17 +34,17 @@ public class Controller {
      * @param creator The registry handler to be used for item registration and
      *                discount fetching.
      */
-    public Controller(RegistryHandler creator) {
+    public Controller(RegistryHandler creator, FileLogger logger) {
         this.creator = creator;
         this.cashRegister = new CashRegister();
-        this.logger = new FileLogger();
+        this.logger = logger;
     }
 
     /**
      * Starts a new sale by creating a new Sale object.
      */
     public void newSale() {
-        this.sale = new Sale();
+        this.sale = new Sale(this.logger);
     }
 
     /**
@@ -52,23 +52,12 @@ public class Controller {
      * 
      * @param searchedItem The item to be registered.
      * @return The found item.
-     * @throws OperationFailedException If the item is not found or if the database
-     *                                  is unreachable.
+     * @throws ItemHandlingException        If the item is not found in the
+     * @throws DatabaseUnreachableException If the database is unreachable.
      */
-    public ItemDTO registerItem(ItemDTO searchedItem) throws OperationFailedException {
-        try {
-            ItemDTO foundItem = sale.registerItem(searchedItem, creator);
-            return foundItem;
-        } catch (ItemHandlingException ItmHandlExc) {
-            throw new OperationFailedException("Item not found", ItmHandlExc);
-        } catch (DatabaseUnreachableException DbUnreachExc) {
-            logger.log(DbUnreachExc);
-            ;
-            throw new OperationFailedException("Database unreachable", DbUnreachExc);
-        } catch (Exception e) {
-            logger.log(e);
-            throw new OperationFailedException("Unexpected error", e);
-        }
+    public ItemDTO registerItem(ItemDTO searchedItem) throws ItemHandlingException, DatabaseUnreachableException {
+        ItemDTO foundItem = sale.registerItem(searchedItem, creator);
+        return foundItem;
     }
 
     /**

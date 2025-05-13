@@ -6,6 +6,7 @@ import se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler;
 import se.kth.iv1350.retailStore.dto.ItemDTO;
 import se.kth.iv1350.retailStore.dto.SaleDTO;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +16,8 @@ import se.kth.iv1350.retailStore.exceptions.ItemNotFoundException;
 import se.kth.iv1350.retailStore.exceptions.ItemHandlingException;
 import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
 import se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException;
+
+import se.kth.iv1350.retailStore.util.FileLogger;
 
 /**
  * This class represents a sale.
@@ -31,6 +34,8 @@ public class Sale {
 
 	private SaleDTO saleInfo;
 
+	private FileLogger logger;
+
 	/**
 	 * Constructs a new Sale object with a random generated sale ID.
 	 * Initializes the item register, payment system and sale period for the
@@ -38,13 +43,15 @@ public class Sale {
 	 * Random
 	 * class.
 	 */
-	public Sale() {
+	public Sale(FileLogger logger) {
 		Random random = new Random();
 		this.saleId = random.nextInt(1000000, 9999999) + "";
 
 		this.itemRegister = new ItemRegister();
 		this.payment = new Payment();
 		this.salePeriod = new Period();
+
+		this.logger = logger;
 	}
 
 	/**
@@ -80,11 +87,12 @@ public class Sale {
 
 			return itemToBeReturned;
 		} catch (ItemNotFoundException ItmNtFndExc) {
+			logger.log(ItmNtFndExc);
 			throw new ItemHandlingException(ItmNtFndExc.getItemThatCouldNotBeFound(), ItmNtFndExc);
 		} catch (InventoryDatabaseException DBUnrExc) {
+			logger.log(DBUnrExc);
 			throw new DatabaseUnreachableException("registering item", DBUnrExc);
 		}
-
 	}
 
 	/**
