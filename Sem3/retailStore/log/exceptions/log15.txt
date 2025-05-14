@@ -1,0 +1,99 @@
+May 13, 2025, 5:23:20 PM, Exception was thrown: Item not found, Item ID: 004. Item does not exist in the item list.
+se.kth.iv1350.retailStore.exceptions.ItemNotFoundException: Item not found, Item ID: 004. Item does not exist in the item list.
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:85)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+java.lang.NullPointerException: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+	at se.kth.iv1350.retailStore.util.ItemListHandler.compareItemId(ItemListHandler.java:42)
+	at se.kth.iv1350.retailStore.util.ItemListHandler.searchItemDTOInstance(ItemListHandler.java:33)
+	at se.kth.iv1350.retailStore.model.ItemRegister.findItem(ItemRegister.java:35)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:75)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Item not found, Item ID: 004. Item does not exist in the item list.
+se.kth.iv1350.retailStore.exceptions.ItemNotFoundException: Item not found, Item ID: 004. Item does not exist in the item list.
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:85)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+java.lang.NullPointerException: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+	at se.kth.iv1350.retailStore.util.ItemListHandler.compareItemId(ItemListHandler.java:42)
+	at se.kth.iv1350.retailStore.util.ItemListHandler.searchItemDTOInstance(ItemListHandler.java:33)
+	at se.kth.iv1350.retailStore.model.ItemRegister.findItem(ItemRegister.java:35)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:75)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Item not found, Item ID: 004. Item does not exist in the item list.
+se.kth.iv1350.retailStore.exceptions.ItemNotFoundException: Item not found, Item ID: 004. Item does not exist in the item list.
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:85)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Inventory register unreachable when: retrieving item info
+se.kth.iv1350.retailStore.exceptions.InventoryDatabaseException: Inventory register unreachable when: retrieving item info
+	at se.kth.iv1350.retailStore.integration.databaseHandler.InventoryRegister.retrieveItemInfo(InventoryRegister.java:80)
+	at se.kth.iv1350.retailStore.integration.databaseHandler.RegistryHandler.retrieveItemInfo(RegistryHandler.java:55)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:84)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)
+May 13, 2025, 5:23:20 PM, Exception was thrown: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+java.lang.NullPointerException: Cannot invoke "se.kth.iv1350.retailStore.dto.ItemDTO.getItemId()" because "<parameter2>" is null
+	at se.kth.iv1350.retailStore.util.ItemListHandler.compareItemId(ItemListHandler.java:42)
+	at se.kth.iv1350.retailStore.util.ItemListHandler.searchItemDTOInstance(ItemListHandler.java:33)
+	at se.kth.iv1350.retailStore.model.ItemRegister.findItem(ItemRegister.java:35)
+	at se.kth.iv1350.retailStore.model.Sale.registerItem(Sale.java:75)
+	at se.kth.iv1350.retailStore.controller.Controller.registerItem(Controller.java:61)
+	at se.kth.iv1350.retailStore.view.View.sampleExecution(View.java:108)
+	at se.kth.iv1350.retailStore.startup.Main.main(Main.java:31)

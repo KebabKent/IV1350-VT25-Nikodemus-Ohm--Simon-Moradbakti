@@ -18,6 +18,8 @@ import se.kth.iv1350.retailStore.exceptions.DatabaseUnreachableException;
 
 import se.kth.iv1350.retailStore.util.FileLogger;
 
+import se.kth.iv1350.retailStore.util.TotalRevenueObserver;
+
 /**
  * Creates a new instance of the controller.
  * Initializes the registry handler and a new cash register.
@@ -110,6 +112,15 @@ public class Controller {
         RecieptPrinter.printReciept(saleInfo);
 
         return saleInfo;
+    }
+
+    /**
+     * Adds a new observer to the cash register to monitor revenue changes.
+     * 
+     * @param newObserver The observer to be added.
+     */
+    public void addRevenueObserver(TotalRevenueObserver newObserver) {
+        cashRegister.addRevenueObserver(newObserver);
     }
 
 }

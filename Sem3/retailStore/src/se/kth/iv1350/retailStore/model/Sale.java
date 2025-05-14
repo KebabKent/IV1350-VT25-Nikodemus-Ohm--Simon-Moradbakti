@@ -8,6 +8,7 @@ import se.kth.iv1350.retailStore.dto.SaleDTO;
 
 import java.io.File;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 import se.kth.iv1350.retailStore.dto.AmountDTO;
@@ -125,23 +126,6 @@ public class Sale {
 	}
 
 	/**
-	 * Registers the amount paid for the sale and calculates the change.
-	 * 
-	 * @param amount The amount paid for the sale.
-	 * @return The updated sale information including the amount paid and change.
-	 */
-	public SaleDTO payForSale(AmountDTO amount) {
-		this.payment.registerAmountPaid(amount);
-		this.payment.calculateChange();
-
-		Payment paymentCopy = new Payment(this.payment);
-
-		this.saleInfo = new SaleDTO(this.saleInfo, paymentCopy);
-
-		return this.saleInfo;
-	}
-
-	/**
 	 * Calculates the total price, applies any discounts, and finalizes the sale
 	 * information.
 	 * 
@@ -159,6 +143,23 @@ public class Sale {
 		Payment paymentCopy = new Payment(this.payment);
 
 		this.saleInfo = new SaleDTO(saleId, itemListCopy, salePeriodCopy, paymentCopy);
+
+		return this.saleInfo;
+	}
+
+	/**
+	 * Registers the amount paid for the sale and calculates the change.
+	 * 
+	 * @param amount The amount paid for the sale.
+	 * @return The updated sale information including the amount paid and change.
+	 */
+	public SaleDTO payForSale(AmountDTO amount) {
+		this.payment.registerAmountPaid(amount);
+		this.payment.calculateChange();
+
+		Payment paymentCopy = new Payment(this.payment);
+
+		this.saleInfo = new SaleDTO(this.saleInfo, paymentCopy);
 
 		return this.saleInfo;
 	}

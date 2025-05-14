@@ -8,11 +8,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import se.kth.iv1350.retailStore.dto.AmountDTO;
+
+import java.time.LocalTime;
+
 /**
  * Prints log messages to a file. The log file will be in the
  * current directory and will be called log.txt.
  */
-public class FileLogger {
+public class TotalRevenueFileOutput implements TotalRevenueObserver {
     private PrintWriter logStream;
     private File logFile;
 
@@ -20,16 +24,16 @@ public class FileLogger {
      * Creates a new instance and also creates a new log file.
      * Appends to the file if it already exists.
      */
-    public FileLogger() {
+    public TotalRevenueFileOutput() {
         try {
-            File logDir = new File("log/exceptions");
+            File logDir = new File("log/totalRevenue");
             if (!logDir.exists()) {
                 logDir.mkdir();
             }
 
             int logNumber = 1;
             do {
-                logFile = new File(logDir, "log" + logNumber + ".txt");
+                logFile = new File(logDir, "totalRevenue" + logNumber + ".txt");
                 logNumber++;
             } while (logFile.exists());
 
@@ -41,23 +45,11 @@ public class FileLogger {
         }
     }
 
-    /**
-     * Writes a log entry describing a thrown exception.
-     *
-     * @param exception The exception that shall be logged.
-     */
-    public void log(Exception exception) {
+    public void newRevenue(AmountDTO newRevenue, LocalTime saleTime) {
         StringBuilder logMsgBuilder = new StringBuilder();
-        logMsgBuilder.append(createTime());
-        logMsgBuilder.append(", Exception was thrown: ");
-        logMsgBuilder.append(exception.getMessage());
+        logMsgBuilder.append("Total revenue: ");
+        logMsgBuilder.append(newRevenue.getAmount());
+        logMsgBuilder.append(" Sale was made: " + saleTime);
         logStream.println(logMsgBuilder);
-        exception.printStackTrace(logStream);
-    }
-
-    private String createTime() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM);
-        return now.format(formatter);
     }
 }

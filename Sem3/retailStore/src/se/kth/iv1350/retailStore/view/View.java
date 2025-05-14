@@ -18,6 +18,8 @@ import se.kth.iv1350.retailStore.exceptions.OperationFailedException;
 
 import se.kth.iv1350.retailStore.util.FileLogger;
 
+import se.kth.iv1350.retailStore.util.TotalRevenueObserver;
+
 /**
  * The View displays information to the user and interacts with the Controller.
  * It registers items, applies discounts, and processeces payments.
@@ -40,6 +42,8 @@ public class View {
         public View(Controller controller, FileLogger logger) {
                 this.controller = controller;
                 this.logger = logger;
+
+                controller.addRevenueObserver(new TotalRevenueView());
         }
 
         /**
@@ -47,101 +51,104 @@ public class View {
          * Registers items, applies discounts, ends the sale, and processes payment.
          */
         public void sampleExecution() {
-                System.out.println("View: New Sale.");
-                System.out.println();
-                controller.newSale();
+                for (int j = 0; j < 3; j++) {
 
-                List<ItemDTO> itemList = new ArrayList<>();
-                ItemDTO searchedItem = new ItemDTO(
-                                "001",
-                                1);
-                itemList.add(searchedItem);
+                        System.out.println("View: New Sale.");
+                        System.out.println();
+                        controller.newSale();
 
-                searchedItem = new ItemDTO(
-                                "003",
-                                1);
-                itemList.add(searchedItem);
+                        List<ItemDTO> itemList = new ArrayList<>();
+                        ItemDTO searchedItem = new ItemDTO(
+                                        "001",
+                                        1);
+                        itemList.add(searchedItem);
 
-                searchedItem = new ItemDTO(
-                                "004",
-                                1);
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "003",
+                                        1);
+                        itemList.add(searchedItem);
 
-                searchedItem = new ItemDTO(
-                                "001",
-                                100);
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "004",
+                                        1);
+                        itemList.add(searchedItem);
 
-                searchedItem = new ItemDTO(
-                                "002",
-                                1337);
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "001",
+                                        100);
+                        itemList.add(searchedItem);
 
-                searchedItem = new ItemDTO(
-                                "007",
-                                1337);
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "002",
+                                        1337);
+                        itemList.add(searchedItem);
 
-                searchedItem = new ItemDTO(
-                                "007",
-                                50);
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "007",
+                                        1337);
+                        itemList.add(searchedItem);
 
-                searchedItem = null;
-                itemList.add(searchedItem);
+                        searchedItem = new ItemDTO(
+                                        "007",
+                                        50);
+                        itemList.add(searchedItem);
 
-                ItemDTO foundItem;
-                SaleDTO saleInfo;
+                        searchedItem = null;
+                        itemList.add(searchedItem);
 
-                int i = 0;
-                while (true) {
-                        searchedItem = itemList.get(i);
-                        System.out.println("View: Registering item " + (i + 1));
+                        ItemDTO foundItem;
+                        SaleDTO saleInfo;
 
-                        try {
-                                foundItem = controller.registerItem(searchedItem);
+                        int i = 0;
+                        while (true) {
+                                searchedItem = itemList.get(i);
+                                System.out.println("View: Registering item " + (i + 1));
 
-                                saleInfo = controller.getSaleInfo();
-                                ItemListHandler.printItem(foundItem);
-                                printPaymentInfo(saleInfo);
-                        } catch (ItemHandlingException ItmHandlExc) {
-                                ErrorMessageHandler.showErrorMsg(
-                                                "Item could not be registered. Please try again.");
-                        } catch (DatabaseUnreachableException DbUnreachExc) {
-                                ErrorMessageHandler.showErrorMsg(
-                                                "Database could not be connected. Please try again later.");
-                        } catch (Exception exc) {
-                                logger.log(exc);
-                                ErrorMessageHandler.showErrorMsg(
-                                                "Unexpected error, something went wrong. Please try again.");
+                                try {
+                                        foundItem = controller.registerItem(searchedItem);
+
+                                        saleInfo = controller.getSaleInfo();
+                                        ItemListHandler.printItem(foundItem);
+                                        printPaymentInfo(saleInfo);
+                                } catch (ItemHandlingException ItmHandlExc) {
+                                        ErrorMessageHandler.showErrorMsg(
+                                                        "Item could not be registered. Please try again.");
+                                } catch (DatabaseUnreachableException DbUnreachExc) {
+                                        ErrorMessageHandler.showErrorMsg(
+                                                        "Database could not be connected. Please try again later.");
+                                } catch (Exception exc) {
+                                        logger.log(exc);
+                                        ErrorMessageHandler.showErrorMsg(
+                                                        "Unexpected error, something went wrong. Please try again.");
+                                }
+
+                                System.out.println();
+
+                                i++;
+                                if (i >= itemList.size()) {
+                                        break;
+                                }
                         }
 
+                        // Ending sale
+                        System.out.println("View: Ending sale");
+                        saleInfo = controller.endSale();
+                        printPaymentInfo(saleInfo);
                         System.out.println();
 
-                        i++;
-                        if (i >= itemList.size()) {
-                                break;
-                        }
+                        // Fetching discount
+                        System.out.println("View: Fetching discount for customer ID 123");
+                        saleInfo = controller.fetchDiscount("123");
+                        printPaymentInfo(saleInfo);
+                        System.out.println();
+
+                        // Processing payment
+                        System.out.println("View: Processing payment");
+                        AmountDTO paidAmount = new AmountDTO(25000);
+                        SaleDTO paymentInfo = controller.payForSale(paidAmount);
+
+                        System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
                 }
-
-                // Ending sale
-                System.out.println("View: Ending sale");
-                saleInfo = controller.endSale();
-                printPaymentInfo(saleInfo);
-                System.out.println();
-
-                // Fetching discount
-                System.out.println("View: Fetching discount for customer ID 123");
-                saleInfo = controller.fetchDiscount("123");
-                printPaymentInfo(saleInfo);
-                System.out.println();
-
-                // Processing payment
-                System.out.println("View: Processing payment");
-                AmountDTO paidAmount = new AmountDTO(25000);
-                SaleDTO paymentInfo = controller.payForSale(paidAmount);
-
-                System.out.println("Change as seen in view: " + paymentInfo.getChange().getAmount());
         }
 
         /**
