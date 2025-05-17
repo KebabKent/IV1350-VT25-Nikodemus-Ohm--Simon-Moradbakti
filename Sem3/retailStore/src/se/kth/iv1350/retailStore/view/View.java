@@ -38,6 +38,7 @@ public class View {
          *
          * @param controller The controller that manages the interaction with the model
          *                   and controls the flow of data.
+         * @param logger     The logger used for logging operations.
          */
         public View(Controller controller, FileLogger logger) {
                 this.controller = controller;

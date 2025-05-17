@@ -12,7 +12,7 @@ import java.util.List;
  * It allows adding new items, updating item quantities, and searching for items
  * in the list.
  */
-public class ItemRegister {
+public class ItemRegister implements Cloneable {
 
     private List<ItemDTO> itemList;
 
@@ -63,17 +63,27 @@ public class ItemRegister {
     }
 
     /**
-     * Returns a copy of the current list of items in the register,
-     * with new ItemDTO instances of the items.
+     * Creates a clone of the current item register and returns it.
      * 
-     * @return The copy of the list of item DTOs in the register.
+     * @return clonedItemRegister is then returned.
+     * 
      */
-    public List<ItemDTO> getItemListCopy() {
-        List<ItemDTO> itemListCopy = new ArrayList<>();
-        for (ItemDTO item : this.itemList) {
-            itemListCopy.add(new ItemDTO(item));
-        }
+    @Override
+    public ItemRegister clone() {
+        ItemRegister clonedItemRegister = new ItemRegister();
 
-        return itemListCopy;
+        for (ItemDTO item : this.itemList) {
+            clonedItemRegister.itemList.add(new ItemDTO(item));
+        }
+        return clonedItemRegister;
+    }
+
+    /**
+     * Returns the item list in the register.
+     * 
+     * @return The registers item list.
+     */
+    public List<ItemDTO> getItemList() {
+        return this.itemList;
     }
 }

@@ -51,7 +51,7 @@ public class InventoryRegisterTest {
 
         payment = new Payment();
 
-        List<ItemDTO> itemListCopy = this.itemRegister.getItemListCopy();
+        List<ItemDTO> itemListCopy = this.itemRegister.clone().getItemList();
 
         payment.calculateTotalPrice(registeredItems);
         payment.setDiscount(10);
@@ -158,7 +158,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, 5); // updating quantity of the first item
-        registeredItems = itemRegister.getItemListCopy();
+        registeredItems = itemRegister.clone().getItemList();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
@@ -180,7 +180,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, -10); // negative quantity shouldn't be allowed
-        registeredItems = itemRegister.getItemListCopy();
+        registeredItems = itemRegister.clone().getItemList();
 
         setUpSale();
 
@@ -197,7 +197,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(1), 2);
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.updateItemQuantity(item, 3000); // too many items
-        registeredItems = itemRegister.getItemListCopy();
+        registeredItems = itemRegister.clone().getItemList();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);
@@ -223,7 +223,7 @@ public class InventoryRegisterTest {
         itemRegister.addItem(fetchedItems.get(2), 1);
         itemRegister.addItem(nonExistingItem, 10); // add non-existent item
         itemRegister.updateItemQuantity(item, 5);
-        registeredItems = itemRegister.getItemListCopy();
+        registeredItems = itemRegister.clone().getItemList();
 
         setUpSale();
         inventoryRegister.updateRegister(sale);

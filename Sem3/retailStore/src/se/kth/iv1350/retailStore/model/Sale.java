@@ -43,6 +43,8 @@ public class Sale {
 	 * transaction. The sale ID is a random 7-digit number generated using the
 	 * Random
 	 * class.
+	 * 
+	 * @param logger The logger to be used for logging operations.
 	 */
 	public Sale(FileLogger logger) {
 		Random random = new Random();
@@ -133,7 +135,7 @@ public class Sale {
 	 *         final details.
 	 */
 	public SaleDTO getSaleDTO() {
-		List<ItemDTO> itemListCopy = this.itemRegister.getItemListCopy();
+		List<ItemDTO> itemListCopy = this.itemRegister.clone().getItemList();
 
 		this.payment.calculateTotalPrice(itemListCopy);
 		this.payment.calculateDiscountedPrice();

@@ -10,6 +10,11 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
 class DiscountRegister {
 	private static final DiscountRegister DISCOUNT_REGISTER = new DiscountRegister();
 
+	/**
+	 * Returns the singleton instance of DiscountRegister.
+	 * 
+	 * @param DiscountRegister
+	 */
 	public static DiscountRegister getDiscountRegister() {
 		return DISCOUNT_REGISTER;
 	}

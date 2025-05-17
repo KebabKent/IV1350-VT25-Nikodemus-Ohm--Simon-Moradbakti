@@ -35,6 +35,7 @@ public class Controller {
      * 
      * @param creator The registry handler to be used for item registration and
      *                discount fetching.
+     * @param logger  The logger to be used for logging operations.
      */
     public Controller(RegistryHandler creator, FileLogger logger) {
         this.creator = creator;
