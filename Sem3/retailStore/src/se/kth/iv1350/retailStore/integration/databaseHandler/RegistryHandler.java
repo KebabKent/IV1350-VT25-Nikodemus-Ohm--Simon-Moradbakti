@@ -67,7 +67,9 @@ public class RegistryHandler {
 	 * @return The discount percentage for the given customer.
 	 */
 	public float fetchDiscount(String customerId) {
-		float discount = DiscountRegister.fetchDiscount(customerId);
+		float discount = DiscountRegister
+				.getDiscountRegister()
+				.fetchDiscount(customerId);
 
 		return discount;
 	}

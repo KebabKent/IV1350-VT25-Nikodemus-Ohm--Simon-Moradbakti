@@ -8,6 +8,14 @@ import se.kth.iv1350.retailStore.dto.AmountDTO;
  * storing the details of any discounts applied to sales.
  */
 class DiscountRegister {
+	private static final DiscountRegister DISCOUNT_REGISTER = new DiscountRegister();
+
+	public static DiscountRegister getDiscountRegister() {
+		return DISCOUNT_REGISTER;
+	}
+
+	private DiscountRegister() {
+	}
 
 	/**
 	 * Returns a discount based on the contents of the item register.
@@ -16,7 +24,7 @@ class DiscountRegister {
 	 * @param itemRegister The current item register containing sold items.
 	 * @return A fixed discount percentage (10).
 	 */
-	static float fetchDiscount(ItemRegister itemRegister) {
+	float fetchDiscount(ItemRegister itemRegister) {
 		return 10;
 	}
 
@@ -27,7 +35,7 @@ class DiscountRegister {
 	 * @param totalCost The total cost of the sale.
 	 * @return A fixed discount percentage (15).
 	 */
-	static float fetchDiscount(AmountDTO totalCost) {
+	float fetchDiscount(AmountDTO totalCost) {
 		return 15;
 	}
 
@@ -38,7 +46,7 @@ class DiscountRegister {
 	 * @param customerId The ID of the customer.
 	 * @return 10% if customer ID is "123", in other cases it is 0%.
 	 */
-	static float fetchDiscount(String customerId) {
+	float fetchDiscount(String customerId) {
 		if (customerId.equals("123")) {
 			return 10;
 		}
