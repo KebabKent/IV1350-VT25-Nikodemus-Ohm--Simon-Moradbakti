@@ -39,9 +39,12 @@ En kursuppgift i IV1350 – Objektorienterad design vid KTH, våren 2025. Projek
 1. Klona repot:
    ```bash
    git clone https://github.com/KebabKent/IV1350-VT25-Nikodemus-Ohm--Simon-Moradbakti.git
-   cd IV1350-VT25-Nikodemus-Ohm--Simon-Moradbakti/Sem3/retailStore
+   cd IV1350-VT25-Nikodemus-Ohm--Simon-Moradbakti/
 
 ## Körning
+Gå in i filsökvägen: `Sem3/retailStore`
+
+Välj ett kommand:
 1. Exekvera programmet:
    ```bash
    make run
