@@ -60,7 +60,7 @@ En kursuppgift i IV1350 – Objektorienterad design vid KTH, våren 2025. Projek
 
 ## Författare
 #### Nikodemus Pellerin Nilsson Ohm
-#### Simon Mouradbakti
+#### Simon Moradbakti
 
 ## Licens
 Använd om du vill men kopiera inte rakt av.
