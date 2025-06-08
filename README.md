@@ -1,6 +1,6 @@
 # IV1350 VT25 – Objektorienterad design: POS‑system
 
-En kursuppgift i IV1350 – Objektorienterad design vid KTH under våren 2025. Projektet består av att iterativt analysera, designa och implementera ett point-of-sale­­‑system (POS) i Java, med fokus på god design, designmönster och UML‑dokumentation. Utvecklingen sker i fyra seminarier som fokuserar på:
+En kursuppgift i IV1350 – Objektorienterad design vid KTH, våren 2025. Projektuppgiften bestod av att iterativt analysera, designa och implementera ett point-of-sale­­‑system (POS) i Java. Fokuset låg på god design, designmönster och UML‑dokumentation. Utvecklingen sker i fyra seminarier som fokuserar på:
 
 1. Analys – domänmodell och sekvensdiagram
 2. Design – arkitektur, klassdiagram och ansvarsfördelning
@@ -10,10 +10,10 @@ En kursuppgift i IV1350 – Objektorienterad design vid KTH under våren 2025. P
 ---
 
 ## Innehåll
-1. [Struktur & moduler](#struktur--moduler)  
-2. [Installation](#installation)  
-3. [Körning](#körning)  
-4. [Författare](#författare)
+1. Struktur & moduler  
+2. Installation  
+3. Körning  
+4. Författare
 
 ---
 
